@@ -13,11 +13,10 @@
         <div class="sidebar">
             <div class="sidebar-header">
                 <button class="new-button">
-                    <span class="material-icons">add</span>
-                    <span>NEW</span>
+                    <span class="material-icons">tune</span>
                 </button>
                 <button class="collapse-btn">
-                    <span class="material-icons">chevron_left</span>
+                    <span class="material-icons">menu</span>
                 </button>
             </div>
 
@@ -155,9 +154,11 @@
                     <span class="temp-status">32%</span>
                 </div>
                 <div class="room-info">
-                    <span>Active for 3 hours</span>
                     <div class="date-info">
                         <span class="material-icons">schedule</span>
+                        <span>Active for 3 hours</span>
+                    </div>
+                    <div class="date-info">
                         <span>Today, 2023</span>
                         <span class="material-icons">calendar_today</span>
                     </div>
@@ -183,21 +184,55 @@
             </div>
 
             <div class="dashboard-grid">
-                <!-- 蓝牙设备卡片 -->
+                <!-- 蓝牙控制卡片 -->
                 <div class="card bluetooth-card">
-                    <div class="card-header">
+                    <div class="bluetooth-header">
                         <h3>Bluetooth</h3>
-                        <div class="bluetooth-controls">
-                            <span>Martine's</span>
-                            <label class="switch">
-                                <input type="checkbox" checked>
-                                <span class="slider"></span>
-                            </label>
-                        </div>
-                    </div>
-                    <div class="add-device">
                         <span class="material-icons">bluetooth</span>
-                        <p>Add device by Bluetooth</p>
+                    </div>
+                    <div class="bluetooth-controls">
+                        <span>Martine's</span>
+                        <label class="switch">
+                            <input type="checkbox" checked>
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- 添加设备卡片 -->
+                <div class="card add-device-card">
+                    <span class="material-icons">add</span>
+                    <span>Add device by Bluetooth</span>
+                </div>
+
+                <!-- 上传状态卡片 -->
+                <div class="card upload-card">
+                    <div class="upload-header">
+                        <div class="upload-info">
+                            <div class="upload-title">
+                                <span class="material-icons">cloud_upload</span>
+                                <span>Uploads device</span>
+                                <span class="upload-count">1/1</span>
+                            </div>
+                            <div class="upload-progress">
+                                <span>Uploading...</span>
+                                <div class="progress-bar">
+                                    <div class="progress-fill"></div>
+                                </div>
+                                <span>20% | 10 seconds left</span>
+                            </div>
+                        </div>
+                        <div class="upload-actions">
+                            <button class="pause-btn">
+                                <span class="material-icons">pause</span>
+                            </button>
+                            <button class="cancel-upload">
+                                <span class="material-icons">close</span>
+                            </button>
+                            <button class="more-options">
+                                <span class="material-icons">more_vert</span>
+                            </button>
+                        </div>
                     </div>
                 </div>
 
@@ -228,7 +263,7 @@
                             <span class="material-icons">tablet</span>
                             <div>
                                 <p>Tablet2</p>
-                                <small>IP Address: 192.352.364.111</small>
+                                <small>IP Address: 192.353.364.111</small>
                             </div>
                             <button class="delete-btn"><span class="material-icons">delete_outline</span></button>
                         </div>
@@ -237,6 +272,27 @@
                         <span class="material-icons">link</span>
                         Other profile
                     </button>
+                </div>
+
+                <!-- QR码扫描卡片 -->
+                <div class="card qr-code-card">
+                    <img src="qr-code-placeholder.png" alt="QR Code">
+                    <p>Scan this QR Code to activate your devices and access controls</p>
+                    <button class="scan-btn">
+                        <span class="material-icons">qr_code_scanner</span>
+                        Scan QR Code
+                    </button>
+                </div>
+
+                <!-- 电池状态卡片 -->
+                <div class="card battery-card">
+                    <div class="card-header">
+                        <h3>Battery</h3>
+                        <span class="material-icons">more_horiz</span>
+                    </div>
+                    <div class="battery-level">31%</div>
+                    <div class="battery-icon"></div>
+                    <div class="battery-time">20 Hours</div>
                 </div>
 
                 <!-- 智能灯控制卡片 -->
