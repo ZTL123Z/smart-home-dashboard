@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Home Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- 左侧边栏 -->
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <button class="new-button">
+                    <span class="material-icons">add</span>
+                    <span>NEW</span>
+                </button>
+                <button class="collapse-btn">
+                    <span class="material-icons">chevron_left</span>
+                </button>
+            </div>
+
+            <div class="home-info">
+                <div class="home-title">
+                    <h3>Martine's Home</h3>
+                    <button class="edit-btn">
+                        <span class="material-icons">edit</span>
+                    </button>
+                </div>
+                <div class="members">
+                    <img src="https://i.pravatar.cc/32?img=1" alt="Member 1">
+                    <img src="https://i.pravatar.cc/32?img=2" alt="Member 2">
+                    <img src="https://i.pravatar.cc/32?img=3" alt="Member 3">
+                    <img src="https://i.pravatar.cc/32?img=4" alt="Member 4">
+                    <span class="member-count">+2</span>
+                </div>
+                <div class="access-info">
+                    <span>Limited access</span>
+                    <button class="invite-btn">+ Invite</button>
+                </div>
+            </div>
+
+            <nav class="menu">
+                <a href="#" class="active">
+                    <span class="material-icons">home</span>
+                    Home
+                </a>
+                <a href="#">
+                    <span class="material-icons">security</span>
+                    Security
+                    <span class="pro-badge">PRO+</span>
+                </a>
+                <a href="#">
+                    <span class="material-icons">thermostat</span>
+                    Temperature
+                </a>
+                <a href="#">
+                    <span class="material-icons">lightbulb</span>
+                    Lighting
+                    <span class="percentage">60%</span>
+                </a>
+                <a href="#">
+                    <span class="material-icons">help</span>
+                    Support
+                </a>
+                <a href="#">
+                    <span class="material-icons">settings</span>
+                    Settings
+                </a>
+            </nav>
+
+            <div class="device-shortcuts">
+                <div class="device-label">Device</div>
+                <div class="device-icons">
+                    <button class="device-icon active">
+                        <span class="material-icons">home</span>
+                    </button>
+                    <button class="device-icon">
+                        <span class="material-icons">router</span>
+                    </button>
+                    <button class="device-icon">
+                        <span class="material-icons">lightbulb</span>
+                    </button>
+                    <button class="device-icon warning">
+                        <span class="material-icons">warning</span>
+                    </button>
+                    <button class="device-icon">
+                        <span class="material-icons">lock</span>
+                    </button>
+                    <button class="device-icon add">
+                        <span class="material-icons">add</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="app-settings">
+                <div class="settings-header">
+                    <span>App Settings</span>
+                    <a href="#" class="view-all">
+                        View all
+                        <span class="material-icons">chevron_right</span>
+                    </a>
+                </div>
+                <div class="theme-selector">
+                    <span>Color Theme</span>
+                    <div class="theme-options">
+                        <button class="theme-btn active">White</button>
+                        <button class="theme-btn">Dark</button>
+                    </div>
+                </div>
+                <div class="color-picker">
+                    <span>App color</span>
+                    <div class="color-options">
+                        <button class="color-btn" style="background-color: #FFD700;"></button>
+                        <button class="color-btn" style="background-color: #FF69B4;"></button>
+                        <button class="color-btn" style="background-color: #4169E1;"></button>
+                        <button class="color-picker-btn">
+                            <span class="material-icons">palette</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 主内容区 -->
+        <main class="main-content">
+            <header class="top-bar">
+                <div class="edit-header">
+                    <span>EDIT</span>
+                    <span class="update-time">Updated 4 min ago</span>
+                </div>
+                <div class="device-selector">
+                    <span class="material-icons">graphic_eq</span>
+                    <span>Tablet_</span>
+                    <button class="icon-btn"><span class="material-icons">search</span></button>
+                    <button class="icon-btn"><span class="material-icons">mic</span></button>
+                </div>
+                <div class="controls">
+                    <button class="icon-btn"><span class="material-icons">notifications</span></button>
+                    <button class="icon-btn"><span class="material-icons">sync</span></button>
+                    <label class="switch">
+                        <input type="checkbox" checked>
+                        <span class="slider"></span>
+                    </label>
+                </div>
+            </header>
+
+            <div class="room-header">
+                <div class="room-status">
+                    <span class="status-dot active"></span>
+                    <span>Living Room</span>
+                    <span class="water-icon">💧</span>
+                    <span>72%</span>
+                    <span class="temp-status">32%</span>
+                </div>
+                <div class="room-info">
+                    <span>Active for 3 hours</span>
+                    <div class="date-info">
+                        <span class="material-icons">schedule</span>
+                        <span>Today, 2023</span>
+                        <span class="material-icons">calendar_today</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="room-tabs">
+                <button class="active">Living Room</button>
+                <button>Kitchen Room</button>
+                <button>Bed Room</button>
+                <button>Movie Room</button>
+                <button>Game Room</button>
+                <button class="add-room">+</button>
+            </div>
+
+            <div class="view-controls">
+                <button class="icon-btn"><span class="material-icons">tune</span></button>
+                <div class="view-options">
+                    <button class="active"><span class="material-icons">grid_view</span></button>
+                    <button><span class="material-icons">apps</span></button>
+                    <button><span class="material-icons">view_list</span></button>
+                </div>
+            </div>
+
+            <div class="dashboard-grid">
+                <!-- 蓝牙设备卡片 -->
+                <div class="card bluetooth-card">
+                    <div class="card-header">
+                        <h3>Bluetooth</h3>
+                        <div class="bluetooth-controls">
+                            <span>Martine's</span>
+                            <label class="switch">
+                                <input type="checkbox" checked>
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="add-device">
+                        <span class="material-icons">bluetooth</span>
+                        <p>Add device by Bluetooth</p>
+                    </div>
+                </div>
+
+                <!-- 用户设备卡片 -->
+                <div class="card user-devices">
+                    <div class="user-info">
+                        <img src="https://i.pravatar.cc/48?img=5" alt="Kalen">
+                        <div>
+                            <h4>Kalen</h4>
+                            <span>2 Devices</span>
+                        </div>
+                        <div class="time-info">
+                            <span class="material-icons">schedule</span>
+                            <span>6:12</span>
+                            <button class="close-btn"><span class="material-icons">close</span></button>
+                        </div>
+                    </div>
+                    <div class="device-list">
+                        <div class="device-item">
+                            <span class="material-icons">smartphone</span>
+                            <div>
+                                <p>Kalen's mobile</p>
+                                <small>IP Address: 192.432.487.113</small>
+                            </div>
+                            <button class="delete-btn"><span class="material-icons">delete_outline</span></button>
+                        </div>
+                        <div class="device-item">
+                            <span class="material-icons">tablet</span>
+                            <div>
+                                <p>Tablet2</p>
+                                <small>IP Address: 192.352.364.111</small>
+                            </div>
+                            <button class="delete-btn"><span class="material-icons">delete_outline</span></button>
+                        </div>
+                    </div>
+                    <button class="other-profile-btn">
+                        <span class="material-icons">link</span>
+                        Other profile
+                    </button>
+                </div>
+
+                <!-- 智能灯控制卡片 -->
+                <div class="card light-control">
+                    <div class="card-header">
+                        <h3>Smart Light</h3>
+                        <div class="light-controls">
+                            <span>On</span>
+                            <label class="switch">
+                                <input type="checkbox" checked>
+                                <span class="slider"></span>
+                            </label>
+                            <button class="mode-btn">
+                                <span class="material-icons">wb_sunny</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="brightness-control">
+                        <div class="brightness-circle">
+                            <span>50%</span>
+                            <p>Brightness</p>
+                        </div>
+                    </div>
+                    <div class="schedule">
+                        <h4>Schedule</h4>
+                        <div class="time-range">
+                            <span>From 12:00 AM</span>
+                            <span>To 12:00 PM</span>
+                        </div>
+                        <div class="intensity-bar">
+                            <div class="intensity-level" style="width: 70%"></div>
+                        </div>
+                        <div class="light-modes">
+                            <button class="active"><span class="material-icons">wb_twilight</span></button>
+                            <button><span class="material-icons">wb_sunny</span></button>
+                            <button><span class="material-icons">nights_stay</span></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 温控器卡片 -->
+                <div class="card thermostat">
+                    <div class="card-header">
+                        <div>
+                            <span class="material-icons">ac_unit</span>
+                            <div>
+                                <h3>Thermostat</h3>
+                                <p>Auto Cooling</p>
+                            </div>
+                        </div>
+                        <label class="switch">
+                            <input type="checkbox" checked>
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                    <div class="temp-circle">
+                        <span class="temp">24.3°</span>
+                        <div class="temp-scale">
+                            <span>16°</span>
+                            <span>30°</span>
+                        </div>
+                    </div>
+                    <div class="temp-buttons">
+                        <button>Swing</button>
+                        <button class="active">Auto</button>
+                        <button>Timer</button>
+                    </div>
+                    <div class="power-info">
+                        <div>
+                            <p>600 W</p>
+                            <small>Active since 2 hour ago</small>
+                        </div>
+                        <span>3 comments</span>
+                        <button class="icon-btn"><span class="material-icons">chevron_right</span></button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html> 
