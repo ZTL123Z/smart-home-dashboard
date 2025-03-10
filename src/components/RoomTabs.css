@@ -1,0 +1,109 @@
+.room-tabs {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.status-info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.room-status {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #4caf50;
+}
+
+.status-indicators {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-left: 10px;
+}
+
+.water-indicator, .battery-indicator {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.activity-status {
+  font-size: 14px;
+  color: #666;
+}
+
+.time-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.time-button {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 10px;
+  border-radius: 5px;
+  border: 1px solid #e0e0e0;
+  background: none;
+  cursor: pointer;
+}
+
+.time-button.active {
+  background-color: #f0f0f0;
+}
+
+.tabs-container {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  border-bottom: 1px solid #e0e0e0;
+  padding-bottom: 10px;
+}
+
+.room-tab {
+  padding: 8px 15px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-size: 14px;
+  color: #666;
+  position: relative;
+}
+
+.room-tab.active {
+  color: #4285f4;
+  font-weight: 500;
+}
+
+.room-tab.active::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: #4285f4;
+}
+
+.add-room-tab {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: none;
+  background-color: #f0f0f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  margin-left: auto;
+}

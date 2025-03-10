@@ -1,0 +1,120 @@
+.main-content {
+  flex: 1;
+  background-color: white;
+  border-radius: 15px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.edit-section {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.edit-text {
+  color: #4285f4;
+  font-weight: 500;
+}
+
+.update-time {
+  font-size: 12px;
+  color: #666;
+}
+
+.search-section {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.tablet-name {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.search-box {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: #f0f0f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.voice-button {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: #f0f0f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.controls-section {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.notification {
+  position: relative;
+}
+
+.notification-badge {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background-color: #ff5722;
+  color: white;
+  font-size: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sync-button {
+  cursor: pointer;
+}
+
+.view-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  align-self: flex-end;
+}
+
+.view-button {
+  width: 30px;
+  height: 30px;
+  border-radius: 5px;
+  border: 1px solid #e0e0e0;
+  background: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.view-button.active {
+  background-color: #4285f4;
+  color: white;
+  border: none;
+}
