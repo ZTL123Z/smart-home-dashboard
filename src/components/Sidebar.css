@@ -1,24 +1,25 @@
 .sidebar {
   width: 280px;
-  background-color: white;
-  border-radius: 15px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  padding: 20px;
+  background-color: #f8f9fa;
+  border-radius: 20px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
+  padding: 16px;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 16px;
+  transition: all 0.3s ease;
 }
 
 .sidebar-header {
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 12px;
 }
 
 .new-button {
   display: flex;
   align-items: center;
-  gap: 5px;
+  gap: 8px;
   color: #4285f4;
   font-weight: 500;
   cursor: pointer;
@@ -37,16 +38,23 @@
 .home-title h2 {
   font-size: 22px;
   font-weight: 600;
+  color: #333;
 }
 
 .edit-icon {
   cursor: pointer;
+  color: #999;
 }
 
 .users-container {
   display: flex;
   align-items: center;
-  gap: 5px;
+  margin-top: 3px;
+}
+
+.user-avatar {
+  margin-right: -8px;
+  border: 2px solid white;
 }
 
 .more-users {
@@ -59,17 +67,24 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-left: 5px;
 }
 
 .access-control {
   display: flex;
   align-items: center;
-  justify-content: space-between;
   font-size: 14px;
   color: #666;
+  margin-top: 3px;
+}
+
+.dropdown-icon {
+  margin-left: 5px;
+  font-size: 10px;
 }
 
 .invite-button {
+  margin-left: auto;
   background: none;
   border: none;
   color: #4285f4;
@@ -80,24 +95,35 @@
 .sidebar-menu {
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 8px;
+  margin-top: 8px;
 }
 
 .menu-item {
   display: flex;
   align-items: center;
-  gap: 10px;
-  padding: 10px;
-  border-radius: 8px;
+  gap: 12px;
+  padding: 10px 15px;
+  border-radius: 12px;
   cursor: pointer;
+  color: #999;
+  transition: all 0.2s ease;
+  position: relative;
+  overflow: hidden;
 }
 
 .menu-item.active {
   background-color: #f0f4f8;
+  color: #333;
+  font-weight: 500;
+}
+
+.menu-item:hover {
+  background-color: #f5f7fa;
+  color: #555;
 }
 
 .menu-icon {
-  color: #666;
   font-size: 18px;
 }
 
@@ -119,50 +145,64 @@
 .device-section {
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 10px;
+  margin-top: 8px;
 }
 
-.device-header {
+.device-label {
   font-weight: 500;
+  color: #333;
 }
 
 .device-icons {
   display: flex;
   justify-content: space-between;
+  margin-top: 3px;
 }
 
 .device-icon {
   width: 32px;
   height: 32px;
-  border-radius: 8px;
+  border-radius: 50%;
   background-color: #f0f0f0;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  transition: transform 0.2s ease, background-color 0.2s ease;
 }
 
 .device-icon.active {
-  background-color: #4285f4;
+  background-color: #ff5722;
   color: white;
+  transform: scale(1.05);
+  box-shadow: 0 2px 8px rgba(255, 87, 34, 0.3);
 }
 
 .device-icon.add {
   background-color: #e0e0e0;
 }
-
 .speaker-card {
-  background-color: #f5f5f5;
-  border-radius: 10px;
+  background: linear-gradient(135deg, #8B4513, #A0522D, #CD853F);
+  border-radius: 15px;
   padding: 15px;
   display: flex;
   flex-direction: column;
   gap: 10px;
+  color: white;
+  box-shadow: 0 4px 12px rgba(139, 69, 19, 0.4), inset 0 1px 3px rgba(255, 255, 255, 0.2);
+}
+
+.speaker-title {
+  font-weight: 500;
+  margin-bottom: 5px;
 }
 
 .speaker-controls {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  gap: 15px;
+  margin: 10px 0;
 }
 
 .control-button {
@@ -170,25 +210,55 @@
   height: 30px;
   border-radius: 50%;
   border: none;
-  background-color: #e0e0e0;
+  background-color: rgba(255, 255, 255, 0.2);
+  color: white;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(2px);
+}
+
+.control-button:hover {
+  background-color: rgba(255, 255, 255, 0.3);
+  transform: scale(1.1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
 .control-button.play {
-  background-color: #4285f4;
-  color: white;
+  background-color: white;
+  color: #8B4513;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.control-button.play:hover {
+  transform: scale(1.15);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.4);
 }
 
 .speaker-info {
   display: flex;
   align-items: center;
   gap: 10px;
+  font-size: 12px;
+}
+
+.speaker-status {
+  margin-left: auto;
+  font-size: 10px;
+  opacity: 0.7;
 }
 
 .app-settings {
   display: flex;
   flex-direction: column;
   gap: 15px;
+  margin-top: 10px;
+  background-color: #fff;
+  border-radius: 15px;
+  padding: 15px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
 }
 
 .settings-header {
@@ -196,6 +266,22 @@
   justify-content: space-between;
   align-items: center;
   font-weight: 500;
+  margin-bottom: 5px;
+}
+
+.view-all {
+  font-size: 12px;
+  color: #999;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  transition: all 0.3s ease;
+}
+
+.view-all:hover {
+  color: #4285f4;
+  transform: translateX(2px);
 }
 
 .theme-settings, .color-settings {
@@ -215,39 +301,83 @@
 }
 
 .theme-option {
-  padding: 5px 15px;
+  padding: 6px 16px;
   border-radius: 15px;
   border: 1px solid #e0e0e0;
   background: none;
   cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 14px;
+}
+
+.theme-option:hover {
+  border-color: #bdbdbd;
+  background-color: #f5f5f5;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
 }
 
 .theme-option.active {
   background-color: #f0f0f0;
   font-weight: 500;
+  border-color: #bdbdbd;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.color-settings {
+  margin-top: 5px;
 }
 
 .color-options {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
+  margin-top: 5px;
 }
 
 .color-option {
   width: 24px;
   height: 24px;
   border-radius: 50%;
-  border: none;
+  border: 2px solid #fff;
   cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.color-option:hover {
+  transform: scale(1.2);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
 }
 
 .color-picker {
   display: flex;
   align-items: center;
   gap: 5px;
-  background: none;
+  background-color: #f5f5f5;
   border: none;
+  border-radius: 12px;
+  padding: 5px 10px;
   font-size: 14px;
   color: #666;
   cursor: pointer;
+  margin-left: 10px;
+  transition: all 0.3s ease;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.color-picker:hover {
+  color: #4285f4;
+  background-color: #f0f0f0;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.color-picker-icon {
+  font-size: 16px;
+  transition: transform 0.3s ease;
+}
+
+.color-picker:hover .color-picker-icon {
+  transform: rotate(15deg);
 }

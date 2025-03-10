@@ -15,7 +15,6 @@ const Sidebar = () => {
           <h2>Martine's Home</h2>
           <span className="edit-icon">✏️</span>
         </div>
-        // 在 Sidebar 组件中的 users-container 部分
         <div className="users-container">
           <UserAvatar src="/avatars/image.png" />
           <UserAvatar src="/avatars/image1.png" />
@@ -47,7 +46,7 @@ const Sidebar = () => {
         <div className="menu-item">
           <FaLightbulb className="menu-icon" />
           <span>Lighting</span>
-          <span className="percentage">80%</span>
+          <span className="percentage">60%</span>
         </div>
         <div className="menu-item">
           <FaHeadset className="menu-icon" />
@@ -60,9 +59,7 @@ const Sidebar = () => {
       </div>
       
       <div className="device-section">
-        <div className="device-header">
-          <span>Device</span>
-        </div>
+        <div className="device-label">Device</div>
         <div className="device-icons">
           <div className="device-icon">🌱</div>
           <div className="device-icon">📱</div>
@@ -72,6 +69,7 @@ const Sidebar = () => {
           <div className="device-icon add">+</div>
         </div>
         <div className="speaker-card">
+          <div className="speaker-title">TiDot</div>
           <div className="speaker-controls">
             <button className="control-button">⏮</button>
             <button className="control-button play">▶</button>
@@ -80,6 +78,7 @@ const Sidebar = () => {
           <div className="speaker-info">
             <span className="speaker-icon">🔊</span>
             <span className="speaker-name">Speaker</span>
+            <span className="speaker-status">PLAYING</span>
           </div>
         </div>
       </div>
@@ -87,10 +86,10 @@ const Sidebar = () => {
       <div className="app-settings">
         <div className="settings-header">
           <span>App Settings</span>
-          <span className="toggle-icon">⚙️</span>
+          <span className="view-all">View all ></span>
         </div>
         <div className="theme-settings">
-          <div className="setting-label">Color Theme</div>
+          <div className="setting-label">Color theme</div>
           <div className="theme-options">
             <button className="theme-option active">White</button>
             <button className="theme-option">Dark</button>
@@ -99,12 +98,12 @@ const Sidebar = () => {
         <div className="color-settings">
           <div className="setting-label">App color</div>
           <div className="color-options">
-            <button className="color-option" style={{ backgroundColor: 'red' }}></button>
-            <button className="color-option" style={{ backgroundColor: 'blue' }}></button>
-            <button className="color-option" style={{ backgroundColor: 'green' }}></button>
+            <button className="color-option" style={{ backgroundColor: '#FFD700' }}></button>
+            <button className="color-option" style={{ backgroundColor: '#FF69B4' }}></button>
+            <button className="color-option" style={{ backgroundColor: '#4169E1' }}></button>
             <button className="color-picker">
-              <span>🎨</span>
-              <span>Open color</span>
+              <span className="color-picker-icon">🎨</span>
+              <span>Open editor</span>
             </button>
           </div>
         </div>

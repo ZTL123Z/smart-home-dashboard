@@ -2,11 +2,12 @@
   flex: 1;
   background-color: white;
   border-radius: 15px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  padding: 20px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+  padding: 16px;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 16px;
+  transition: all 0.3s ease;
 }
 
 .header {
@@ -18,12 +19,17 @@
 .edit-section {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
 }
 
 .edit-text {
   color: #4285f4;
   font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.edit-text:hover {
+  color: #2b6cb0;
 }
 
 .update-time {
@@ -34,7 +40,7 @@
 .search-section {
   display: flex;
   align-items: center;
-  gap: 15px;
+  gap: 12px;
 }
 
 .tablet-name {
@@ -52,6 +58,12 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.search-box:hover {
+  background-color: #e0e0e0;
+  transform: scale(1.05);
 }
 
 .voice-button {
@@ -63,12 +75,18 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.voice-button:hover {
+  background-color: #e0e0e0;
+  transform: scale(1.05);
 }
 
 .controls-section {
   display: flex;
   align-items: center;
-  gap: 15px;
+  gap: 12px;
 }
 
 .notification {
@@ -88,6 +106,20 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  box-shadow: 0 2px 4px rgba(255, 87, 34, 0.3);
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 
 .sync-button {
@@ -111,10 +143,17 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.view-button:hover {
+  border-color: #bdbdbd;
+  background-color: #f5f5f5;
 }
 
 .view-button.active {
   background-color: #4285f4;
   color: white;
   border: none;
+  box-shadow: 0 2px 4px rgba(66, 133, 244, 0.3);
 }
