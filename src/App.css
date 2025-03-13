@@ -52,17 +52,19 @@
   background-color: #f0f4f8;
   position: relative;
   overflow: hidden;
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
 }
 
 .app-title {
   padding: 20px;
   font-size: 24px;
   font-weight: bold;
-  color: #fff;
+  color: #4285f4; /* 改为蓝色 */
   background-color: transparent;
   position: absolute;
   top: 0;
   left: 0;
+  z-index: 10;
 }
 
 .app-container {

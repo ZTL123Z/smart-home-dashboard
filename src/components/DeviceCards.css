@@ -1,25 +1,27 @@
 .device-cards {
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  overflow-y: hidden;
+  gap: 20px;
+  overflow-y: auto;
+  padding-right: 5px;
 }
 
 .device-row {
   display: flex;
-  gap: 12px;
+  gap: 20px;
 }
 
 .bluetooth-card, .add-device-card, .upload-device-card, 
 .user-devices-card, .smart-light-card, .thermostat-card,
 .qr-code-card, .battery-card {
-  background-color: #f8f9fa;
-  border-radius: 15px;
-  padding: 12px;
+  background-color: #ffffff;
+  border-radius: 20px;
+  padding: 16px;
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 15px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 }
 
 .card-header {
@@ -32,6 +34,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 8px 0;
 }
 
 .device-info {
@@ -45,10 +48,10 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100px;
-  border: 2px dashed #ccc;
-  border-radius: 10px;
-  gap: 10px;
+  height: 120px;
+  border: 2px dashed #e0e0e0;
+  border-radius: 15px;
+  gap: 12px;
 }
 
 .tooltip {
@@ -57,17 +60,18 @@
 
 .tooltip-content {
   position: absolute;
-  top: -60px;
+  top: -70px;
   left: 50%;
   transform: translateX(-50%);
   background-color: #333;
   color: white;
-  padding: 10px;
-  border-radius: 5px;
+  padding: 12px 16px;
+  border-radius: 10px;
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
   width: max-content;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
 .tooltip-content::after {
@@ -84,13 +88,14 @@
 .upload-header {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
+  font-weight: 500;
 }
 
 .upload-progress {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 12px;
 }
 
 .progress-text {
@@ -100,9 +105,9 @@
 }
 
 .progress-bar {
-  height: 6px;
-  background-color: #e0e0e0;
-  border-radius: 3px;
+  height: 8px;
+  background-color: #e9ecef;
+  border-radius: 4px;
   overflow: hidden;
 }
 
@@ -114,15 +119,15 @@
 .progress-controls {
   display: flex;
   justify-content: flex-end;
-  gap: 10px;
+  gap: 12px;
 }
 
 .pause-button, .cancel-button, .more-button {
-  width: 24px;
-  height: 24px;
+  width: 28px;
+  height: 28px;
   border-radius: 50%;
   border: none;
-  background-color: #e0e0e0;
+  background-color: #f0f0f0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -132,14 +137,15 @@
 .user-header {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
 }
 
 .user-avatar {
-  width: 40px;
-  height: 40px;
+  width: 45px;
+  height: 45px;
   border-radius: 50%;
   overflow: hidden;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }
 
 .user-avatar img {
@@ -156,16 +162,19 @@
 .time-setting {
   display: flex;
   align-items: center;
-  gap: 5px;
+  gap: 8px;
   margin-left: auto;
+  background-color: #f5f7fa;
+  padding: 5px 10px;
+  border-radius: 15px;
 }
 
 .close-button {
-  width: 20px;
-  height: 20px;
+  width: 22px;
+  height: 22px;
   border-radius: 50%;
   border: none;
-  background-color: #e0e0e0;
+  background-color: transparent;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -190,11 +199,11 @@
 }
 
 .remove-button {
-  width: 24px;
-  height: 24px;
+  width: 28px;
+  height: 28px;
   border-radius: 50%;
   border: none;
-  background-color: #f0f0f0;
+  background-color: #f5f7fa;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -207,6 +216,7 @@
   gap: 10px;
   color: #4285f4;
   cursor: pointer;
+  font-size: 14px;
 }
 
 .hand-icon {
@@ -216,7 +226,7 @@
 .light-controls {
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 20px;
 }
 
 .light-status {
@@ -226,11 +236,11 @@
 }
 
 .brightness-button {
-  width: 30px;
-  height: 30px;
+  width: 32px;
+  height: 32px;
   border-radius: 50%;
   border: none;
-  background-color: #f0f0f0;
+  background-color: #f5f7fa;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -240,37 +250,40 @@
 .brightness-control {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 15px;
 }
 
 .brightness-value {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  font-size: 24px;
+  font-weight: 600;
 }
 
 .brightness-slider {
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: 8px;
 }
 
 .slider-track {
-  height: 4px;
-  background-color: #e0e0e0;
-  border-radius: 2px;
+  height: 6px;
+  background-color: #e9ecef;
+  border-radius: 3px;
   position: relative;
 }
 
 .slider-thumb {
-  width: 16px;
-  height: 16px;
+  width: 18px;
+  height: 18px;
   background-color: white;
   border: 2px solid #4285f4;
   border-radius: 50%;
   position: absolute;
   top: 50%;
   transform: translate(-50%, -50%);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }
 
 .schedule-control {
@@ -286,11 +299,11 @@
 }
 
 .schedule-button {
-  width: 24px;
-  height: 24px;
+  width: 28px;
+  height: 28px;
   border-radius: 50%;
   border: none;
-  background-color: #f0f0f0;
+  background-color: #f5f7fa;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -310,16 +323,17 @@
 .time-slot {
   display: flex;
   align-items: center;
-  gap: 5px;
-  padding: 5px 10px;
-  border-radius: 5px;
-  background-color: #f0f0f0;
+  gap: 8px;
+  padding: 6px 12px;
+  border-radius: 10px;
+  background-color: #f5f7fa;
+  font-size: 14px;
 }
 
 .intensity-control {
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: 8px;
 }
 
 .intensity-slider {
@@ -331,6 +345,7 @@
 .slider-fill {
   height: 100%;
   background-color: #4285f4;
+  border-radius: 3px;
 }
 
 .mode-buttons {
@@ -342,12 +357,13 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 5px;
+  gap: 6px;
   padding: 10px;
-  border-radius: 5px;
+  border-radius: 10px;
   border: none;
-  background-color: #f0f0f0;
+  background-color: #f5f7fa;
   cursor: pointer;
+  font-size: 13px;
 }
 
 .mode-button.active {
@@ -378,30 +394,33 @@
   flex-direction: column;
   align-items: center;
   position: relative;
+  margin: 20px 0;
 }
 
 .current-temp {
   display: flex;
   align-items: baseline;
-  font-size: 36px;
+  font-size: 42px;
   font-weight: 600;
+  color: #333;
 }
 
 .temp-unit {
-  font-size: 24px;
+  font-size: 28px;
 }
 
 .temp-dial {
-  width: 150px;
-  height: 150px;
+  width: 180px;
+  height: 180px;
   position: relative;
+  margin-top: -20px;
 }
 
 .dial-circle {
-  width: 100px;
-  height: 100px;
+  width: 120px;
+  height: 120px;
   border-radius: 50%;
-  border: 15px solid #f0f0f0;
+  border: 15px solid #f5f7fa;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -409,10 +428,11 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 }
 
 .co2-text {
-  font-size: 14px;
+  font-size: 16px;
   color: #666;
 }
 
@@ -424,18 +444,18 @@
 
 .marker {
   position: absolute;
-  font-size: 12px;
+  font-size: 14px;
   color: #666;
 }
 
 .marker.min {
-  bottom: 0;
-  left: 0;
+  bottom: 10px;
+  left: 10px;
 }
 
 .marker.max {
-  bottom: 0;
-  right: 0;
+  bottom: 10px;
+  right: 10px;
 }
 
 .mode-controls {
@@ -451,7 +471,7 @@
 .power-usage {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 12px;
 }
 
 .usage-header {
@@ -471,7 +491,7 @@
 .active-since, .comments {
   display: flex;
   align-items: center;
-  gap: 5px;
+  gap: 8px;
 }
 
 .qr-code-image {
@@ -480,7 +500,8 @@
   align-items: center;
   justify-content: center;
   border: 1px solid #e0e0e0;
-  border-radius: 10px;
+  border-radius: 15px;
+  background-color: #f5f7fa;
 }
 
 .qr-placeholder {
@@ -492,6 +513,7 @@
   text-align: center;
   font-size: 14px;
   color: #666;
+  padding: 0 10px;
 }
 
 .scan-button {
@@ -500,31 +522,54 @@
   justify-content: center;
   gap: 10px;
   padding: 10px;
-  border-radius: 5px;
+  border-radius: 10px;
   border: none;
   background-color: #4285f4;
   color: white;
   cursor: pointer;
 }
 
+.battery-card {
+  padding: 20px;
+}
+
+.battery-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .battery-content {
   display: flex;
   align-items: center;
   justify-content: space-around;
+  margin: 20px 0;
 }
 
 .battery-percentage {
-  font-size: 24px;
+  font-size: 32px;
   font-weight: 600;
 }
 
 .battery-icon {
   width: 40px;
   height: 80px;
-  border: 2px solid #666;
-  border-radius: 5px;
+  border-radius: 10px 10px 5px 5px;
+  border: 2px solid #ccc;
   position: relative;
   overflow: hidden;
+}
+
+.battery-icon::before {
+  content: '';
+  position: absolute;
+  top: -5px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 20px;
+  height: 5px;
+  background-color: #ccc;
+  border-radius: 5px 5px 0 0;
 }
 
 .battery-level {
@@ -532,7 +577,8 @@
   bottom: 0;
   left: 0;
   width: 100%;
-  background-color: #4caf50;
+  background: linear-gradient(to top, #4cd964, #a4e786);
+  transition: height 0.3s ease;
 }
 
 .battery-info {

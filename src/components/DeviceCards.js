@@ -58,7 +58,6 @@ const DeviceCards = () => {
       
       <div className="device-row">
         <div className="user-devices-card">
-          // 在用户设备卡片部分
           <div className="user-header">
             <div className="user-avatar">
               <img src="/avatars/image2.png" alt="Kalen" />
@@ -88,7 +87,7 @@ const DeviceCards = () => {
               <div className="device-icon">💻</div>
               <div className="device-details">
                 <span>Tablet2</span>
-                <span className="ip-address">IP Address: 102.353.364.111</span>
+                <span className="ip-address">IP Address: 122.353.364.111</span>
               </div>
               <button className="remove-button">🗑️</button>
             </div>
@@ -116,7 +115,6 @@ const DeviceCards = () => {
             </div>
             <div className="brightness-control">
               <div className="brightness-value">
-                <span className="light-icon">💡</span>
                 <span className="percentage">50%</span>
               </div>
               <div className="brightness-slider">
@@ -134,7 +132,7 @@ const DeviceCards = () => {
               <div className="time-slots">
                 <div className="time-slot">
                   <span className="time-label">From</span>
-                  <span className="time-value">12:00 AM</span>
+                  <span className="time-value">12:00</span>
                   <span className="dropdown-icon">▼</span>
                 </div>
                 <div className="time-slot">
@@ -244,7 +242,7 @@ const DeviceCards = () => {
             <div className="qr-placeholder">QR Code</div>
           </div>
           <div className="qr-info">
-            <p>Scan QR Code to control your devices and control remotely</p>
+            <p>Scan QR Code to control your devices and access controls</p>
           </div>
           <button className="scan-button">
             <span className="scan-icon">📷</span>
@@ -264,7 +262,7 @@ const DeviceCards = () => {
             </div>
           </div>
           <div className="battery-info">
-            <span>30 Hours</span>
+            <span>20 Hours</span>
           </div>
         </div>
       </div>

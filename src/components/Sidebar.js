@@ -7,10 +7,6 @@ const Sidebar = () => {
   return (
     <div className="sidebar">
       <div className="sidebar-header">
-        <div className="new-button">
-          <span className="plus-icon">+</span>
-          <span>NEW</span>
-        </div>
         <div className="home-title">
           <h2>Martine's Home</h2>
           <span className="edit-icon">✏️</span>

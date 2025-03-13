@@ -13,8 +13,8 @@ const MainContent = () => {
         </div>
         <div className="search-section">
           <div className="tablet-name">
-            <span className="tablet-icon">🎙️</span>
-            <span>Tablet_2</span>
+            <span className="tablet-icon">🔊</span>
+            <span>Tablet_</span>
           </div>
           <div className="search-box">
             <span className="search-icon">🔍</span>

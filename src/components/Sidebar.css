@@ -49,12 +49,18 @@
 .users-container {
   display: flex;
   align-items: center;
-  margin-top: 3px;
+  margin-top: 8px;
+  margin-bottom: 8px;
 }
 
 .user-avatar {
-  margin-right: -8px;
+  margin-right: -10px;
   border: 2px solid white;
+  transition: transform 0.2s ease;
+}
+
+.user-avatar:hover {
+  transform: translateY(-3px);
 }
 
 .more-users {

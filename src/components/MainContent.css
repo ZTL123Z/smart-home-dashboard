@@ -1,12 +1,12 @@
 .main-content {
   flex: 1;
   background-color: white;
-  border-radius: 15px;
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
-  padding: 16px;
+  border-radius: 24px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.05);
+  padding: 20px;
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 20px;
   transition: all 0.3s ease;
 }
 
@@ -14,6 +14,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding-bottom: 10px;
 }
 
 .edit-section {
@@ -25,6 +26,7 @@
 .edit-text {
   color: #4285f4;
   font-weight: 500;
+  font-size: 14px;
 }
 
 .update-time {
@@ -36,19 +38,27 @@
   display: flex;
   align-items: center;
   gap: 15px;
+  background-color: #f5f7fa;
+  border-radius: 20px;
+  padding: 5px 15px;
 }
 
 .tablet-name {
   display: flex;
   align-items: center;
-  gap: 5px;
+  gap: 8px;
+  font-size: 14px;
+  color: #555;
+}
+
+.tablet-icon {
+  color: #666;
 }
 
 .search-box {
   width: 30px;
   height: 30px;
   border-radius: 50%;
-  background-color: #f0f0f0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -59,11 +69,11 @@
   width: 30px;
   height: 30px;
   border-radius: 50%;
-  background-color: #f0f0f0;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  color: #666;
 }
 
 .controls-section {
@@ -95,9 +105,38 @@
   cursor: pointer;
 }
 
+.power-toggle {
+  width: 50px;
+  height: 26px;
+  border-radius: 13px;
+  background-color: #e0e0e0;
+  position: relative;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.power-toggle.active {
+  background-color: #4cd964;
+}
+
+.toggle-button {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background-color: white;
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.power-toggle.active .toggle-button {
+  left: calc(100% - 24px);
+}
+
 .view-controls {
   display: flex;
-  align-items: center;
   gap: 10px;
   align-self: flex-end;
 }
@@ -105,7 +144,7 @@
 .view-button {
   width: 30px;
   height: 30px;
-  border-radius: 5px;
+  border-radius: 8px;
   border: 1px solid #e0e0e0;
   background: none;
   display: flex;
