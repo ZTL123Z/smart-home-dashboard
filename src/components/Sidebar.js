@@ -360,13 +360,6 @@ const Sidebar = ({ onMenuItemClick, onThemeChange, onColorChange, currentTheme, 
           <FaHeadset className="menu-icon" />
           <span>Support</span>
         </div>
-        <div 
-          className={`menu-item ${activeMenuItem === 'settings' ? 'active' : ''}`}
-          onClick={() => handleMenuItemClick('settings')}
-        >
-          <FaCog className="menu-icon" />
-          <span>Settings</span>
-        </div>
       </div>
       
       {/* 设备部分 */}

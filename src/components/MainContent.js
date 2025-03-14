@@ -464,52 +464,19 @@ const MainContent = ({ activeSection = 'home', theme = 'white' }) => {
               <h2>Support</h2>
             </div>
             
-            <div className="support-dashboard">
-              <div className="support-options">
-                <div className="support-card">
-                  <FaHeadset className="support-icon" />
-                  <h3>Live Chat</h3>
-                  <p>Chat with our support team</p>
-                  <button className="support-button">Start Chat</button>
-                </div>
-                
-                <div className="support-card">
-                  <FaInfoCircle className="support-icon" />
-                  <h3>Help Center</h3>
-                  <p>Browse our knowledge base</p>
-                  <button className="support-button">View Articles</button>
-                </div>
-              </div>
-              
-              <div className="contact-form">
-                <h3>Send a Message</h3>
-                <div className="form-group">
-                  <label>Subject</label>
-                  <input type="text" placeholder="Enter subject" />
-                </div>
-                <div className="form-group">
-                  <label>Message</label>
-                  <textarea placeholder="Describe your issue"></textarea>
-                </div>
-                <button className="send-button">Send Message</button>
-              </div>
-              
-              <div className="faq-section">
-                <h3>Frequently Asked Questions</h3>
-                <div className="faq-list">
-                  <div className="faq-item">
-                    <h4>How do I add a new device?</h4>
-                    <p>To add a new device, go to the Devices section and click the "+" button. Follow the on-screen instructions to connect your device.</p>
-                  </div>
-                  <div className="faq-item">
-                    <h4>How do I reset my password?</h4>
-                    <p>You can reset your password by clicking on "Forgot Password" on the login screen and following the instructions sent to your email.</p>
-                  </div>
-                  <div className="faq-item">
-                    <h4>Can I control my devices remotely?</h4>
-                    <p>Yes, you can control all your connected devices remotely through our mobile app or web interface as long as you have an internet connection.</p>
-                  </div>
-                </div>
+            <div className="support-dashboard centered-support">
+              <div className="support-center-card">
+                <FaInfoCircle className="support-icon" />
+                <h3>Help Center</h3>
+                <p>Browse our knowledge base</p>
+                <a 
+                  href="https://www.baidu.com" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="support-button"
+                >
+                  View Articles
+                </a>
               </div>
             </div>
           </div>
