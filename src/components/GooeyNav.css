@@ -1,0 +1,100 @@
+.gooey-nav-container {
+  position: relative;
+  width: 100%;
+  border-radius: 12px;
+  padding: 8px;
+  overflow: hidden;
+}
+
+.gooey-filter {
+  position: absolute;
+  width: 0;
+  height: 0;
+  visibility: hidden;
+}
+
+.gooey-nav {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  filter: url('#gooey');
+}
+
+.gooey-indicator {
+  position: absolute;
+  height: 36px;
+  border-radius: 18px;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 1;
+}
+
+.gooey-nav-item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 16px;
+  border-radius: 18px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 2;
+  user-select: none;
+  white-space: nowrap;
+}
+
+.gooey-nav-item.active {
+  color: white;
+}
+
+.gooey-nav-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 8px;
+}
+
+.gooey-nav-text {
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.gooey-nav-badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 20px;
+  height: 20px;
+  border-radius: 10px;
+  font-size: 12px;
+  font-weight: bold;
+  color: white;
+  margin-left: 8px;
+  padding: 0 6px;
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+  .gooey-nav-text {
+    font-size: 12px;
+  }
+  
+  .gooey-nav-item {
+    padding: 6px 12px;
+  }
+  
+  .gooey-indicator {
+    height: 32px;
+  }
+}
+
+@media (max-width: 480px) {
+  .gooey-nav-icon {
+    margin-right: 4px;
+  }
+  
+  .gooey-nav-item {
+    padding: 6px 8px;
+  }
+} 

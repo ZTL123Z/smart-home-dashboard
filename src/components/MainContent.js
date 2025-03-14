@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import './MainContent.css';
-import RoomTabs from './RoomTabs';
 import DeviceCards from './DeviceCards';
 import { FaChartLine, FaLock, FaThermometerHalf, FaLightbulb, FaHeadset, FaCog, FaInfoCircle, FaExclamationTriangle, FaRegLightbulb, FaRegSun, FaRegMoon, FaShieldAlt, FaToggleOn, FaToggleOff } from 'react-icons/fa';
 import ShapeBlur from './ShapeBlur';
 import Orb from './Orb';
 import CircleBackground from './CircleBackground';
+import RoomNav from './RoomNav';
 
 const MainContent = ({ activeSection = 'home', theme = 'white' }) => {
   // 状态管理
@@ -31,6 +31,9 @@ const MainContent = ({ activeSection = 'home', theme = 'white' }) => {
     { id: 2, message: "Motion detected in backyard", time: "Today, 12:15", level: "warning" },
     { id: 3, message: "Window sensor triggered", time: "Yesterday, 23:45", level: "alert" }
   ]);
+  
+  // 房间状态
+  const [activeRoom, setActiveRoom] = useState(0);
   
   // 处理编辑模式切换
   const handleEditToggle = () => {
@@ -105,13 +108,18 @@ const MainContent = ({ activeSection = 'home', theme = 'white' }) => {
     setSecurityLevel(level);
   };
   
+  // 处理房间切换
+  const handleRoomChange = (roomIndex) => {
+    setActiveRoom(roomIndex);
+  };
+  
   // 渲染主内容区域
   const renderMainContent = () => {
     switch (activeSection) {
       case 'home':
         return (
           <>
-            <RoomTabs />
+            <RoomNav onRoomChange={handleRoomChange} />
             <DeviceCards />
           </>
         );
@@ -567,7 +575,7 @@ const MainContent = ({ activeSection = 'home', theme = 'white' }) => {
       default:
         return (
           <>
-            <RoomTabs />
+            <RoomNav onRoomChange={handleRoomChange} />
             <DeviceCards />
           </>
         );
