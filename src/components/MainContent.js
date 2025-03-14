@@ -390,21 +390,30 @@ const MainContent = ({ activeSection = 'home', theme = 'white' }) => {
                     className={`mode-button modern-mode-button ${lightMode === 'day' ? 'active' : ''}`}
                     onClick={() => handleLightModeChange('day')}
                   >
-                    <FaRegSun className="mode-icon" />
+                    <div className="mode-icon-wrapper">
+                      <FaRegSun className="mode-icon" />
+                      <div className="icon-glow"></div>
+                    </div>
                     <span>Day</span>
                   </button>
                   <button 
                     className={`mode-button modern-mode-button ${lightMode === 'evening' ? 'active' : ''}`}
                     onClick={() => handleLightModeChange('evening')}
                   >
-                    <FaRegLightbulb className="mode-icon" />
+                    <div className="mode-icon-wrapper">
+                      <FaRegLightbulb className="mode-icon" />
+                      <div className="icon-glow"></div>
+                    </div>
                     <span>Evening</span>
                   </button>
                   <button 
                     className={`mode-button modern-mode-button ${lightMode === 'night' ? 'active' : ''}`}
                     onClick={() => handleLightModeChange('night')}
                   >
-                    <FaRegMoon className="mode-icon" />
+                    <div className="mode-icon-wrapper">
+                      <FaRegMoon className="mode-icon" />
+                      <div className="icon-glow"></div>
+                    </div>
                     <span>Night</span>
                   </button>
                 </div>
