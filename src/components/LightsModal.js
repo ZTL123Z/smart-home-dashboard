@@ -1,26 +1,66 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import './LightsModal.css';
-import { FaLightbulb, FaTimes, FaPowerOff, FaRegLightbulb, FaCog, FaToggleOn } from 'react-icons/fa';
+import { FaLightbulb, FaTimes, FaPowerOff, FaRegLightbulb, FaCog, FaToggleOn, FaRandom } from 'react-icons/fa';
 
-const LightsModal = ({ isOpen, onClose }) => {
-  // 模拟灯光数据
-  const [lights, setLights] = useState([
-    { id: 1, name: 'Living Room Main', isOn: true, brightness: 80, room: 'Living Room' },
-    { id: 2, name: 'Living Room Corner', isOn: true, brightness: 60, room: 'Living Room' },
-    { id: 3, name: 'Kitchen Ceiling', isOn: true, brightness: 100, room: 'Kitchen' },
-    { id: 4, name: 'Kitchen Counter', isOn: true, brightness: 70, room: 'Kitchen' },
-    { id: 5, name: 'Bedroom Main', isOn: true, brightness: 50, room: 'Bedroom' },
-    { id: 6, name: 'Bedroom Reading', isOn: true, brightness: 90, room: 'Bedroom' },
-    { id: 7, name: 'Bathroom', isOn: true, brightness: 100, room: 'Bathroom' },
-    { id: 8, name: 'Hallway', isOn: true, brightness: 70, room: 'Hallway' },
-    { id: 9, name: 'Dining Room', isOn: false, brightness: 0, room: 'Dining Room' },
-    { id: 10, name: 'Office Desk', isOn: false, brightness: 0, room: 'Office' },
-    { id: 11, name: 'Office Ceiling', isOn: false, brightness: 0, room: 'Office' },
-    { id: 12, name: 'Guest Room', isOn: false, brightness: 0, room: 'Guest Room' }
-  ]);
+const LightsModal = ({ 
+  isOpen, 
+  onClose, 
+  lights, 
+  setLights, 
+  toggleLight: parentToggleLight, 
+  adjustBrightness: parentAdjustBrightness, 
+  turnOffAllLights: parentTurnOffAllLights, 
+  turnOnAllLights: parentTurnOnAllLights 
+}) => {
+  // 添加演示模式状态
+  const [demoMode, setDemoMode] = useState(false);
+  // 添加数字变化动画状态
+  const [isChanging, setIsChanging] = useState(false);
+  // 记录上一次的活跃灯光数量
+  const prevActiveLightsRef = useRef(0);
+  
+  // 监测活跃灯光数量变化
+  useEffect(() => {
+    if (isOpen && lights) {
+      const activeLightsCount = lights.filter(light => light.isOn).length;
+      if (prevActiveLightsRef.current !== activeLightsCount && prevActiveLightsRef.current !== 0) {
+        setIsChanging(true);
+        const timer = setTimeout(() => {
+          setIsChanging(false);
+        }, 500);
+        return () => clearTimeout(timer);
+      }
+      prevActiveLightsRef.current = activeLightsCount;
+    }
+  }, [lights, isOpen]);
+
+  // 演示模式效果
+  useEffect(() => {
+    let interval;
+    if (demoMode && isOpen && setLights) {
+      interval = setInterval(() => {
+        setLights(prevLights => {
+          // 随机选择一个灯光来切换状态
+          const randomIndex = Math.floor(Math.random() * prevLights.length);
+          return prevLights.map((light, index) => {
+            if (index === randomIndex) {
+              // 切换选中灯光的状态
+              return { 
+                ...light, 
+                isOn: !light.isOn, 
+                brightness: !light.isOn ? Math.floor(Math.random() * 50) + 50 : 0 
+              };
+            }
+            return light;
+          });
+        });
+      }, 2000); // 每2秒切换一次
+    }
+    return () => clearInterval(interval);
+  }, [demoMode, isOpen, setLights]);
 
   // 如果模态框未打开，则不渲染任何内容
-  if (!isOpen) return null;
+  if (!isOpen || !lights) return null;
 
   // 过滤出活跃的灯光
   const activeLights = lights.filter(light => light.isOn);
@@ -35,27 +75,36 @@ const LightsModal = ({ isOpen, onClose }) => {
   });
 
   // 切换灯光状态
-  const toggleLight = (id) => {
-    setLights(lights.map(light => 
-      light.id === id ? { ...light, isOn: !light.isOn, brightness: !light.isOn ? 70 : 0 } : light
-    ));
+  const toggleLightHandler = (id) => {
+    if (parentToggleLight) {
+      parentToggleLight(id);
+    }
   };
 
   // 调整亮度
-  const adjustBrightness = (id, value) => {
-    setLights(lights.map(light => 
-      light.id === id ? { ...light, brightness: value, isOn: value > 0 } : light
-    ));
+  const adjustBrightnessHandler = (id, value) => {
+    if (parentAdjustBrightness) {
+      parentAdjustBrightness(id, value);
+    }
   };
 
   // 关闭所有灯光
-  const turnOffAllLights = () => {
-    setLights(lights.map(light => ({ ...light, isOn: false, brightness: 0 })));
+  const turnOffAllLightsHandler = () => {
+    if (parentTurnOffAllLights) {
+      parentTurnOffAllLights();
+    }
   };
 
   // 开启所有灯光
-  const turnOnAllLights = () => {
-    setLights(lights.map(light => ({ ...light, isOn: true, brightness: 70 })));
+  const turnOnAllLightsHandler = () => {
+    if (parentTurnOnAllLights) {
+      parentTurnOnAllLights();
+    }
+  };
+
+  // 切换演示模式
+  const toggleDemoMode = () => {
+    setDemoMode(!demoMode);
   };
 
   return (
@@ -75,15 +124,23 @@ const LightsModal = ({ isOpen, onClose }) => {
           <div className="lights-summary">
             <div className="lights-total">
               <h3>Active Lights</h3>
-              <div className="lights-value">{activeLights.length} of {lights.length}</div>
+              <div className="lights-value">
+                <span className={isChanging ? 'changing' : ''}>{activeLights.length}</span> of <span>{lights.length}</span>
+              </div>
             </div>
             
             <div className="lights-actions">
-              <button className="action-button turn-on" onClick={turnOnAllLights}>
+              <button className="action-button turn-on" onClick={turnOnAllLightsHandler}>
                 <FaToggleOn /> Turn On All
               </button>
-              <button className="action-button" onClick={turnOffAllLights}>
+              <button className="action-button" onClick={turnOffAllLightsHandler}>
                 <FaPowerOff /> Turn Off All
+              </button>
+              <button 
+                className={`action-button ${demoMode ? 'demo-active' : 'demo'}`} 
+                onClick={toggleDemoMode}
+              >
+                <FaRandom /> {demoMode ? 'Stop Demo' : 'Start Demo'}
               </button>
             </div>
           </div>
@@ -108,14 +165,14 @@ const LightsModal = ({ isOpen, onClose }) => {
                             min="0" 
                             max="100" 
                             value={light.brightness} 
-                            onChange={(e) => adjustBrightness(light.id, parseInt(e.target.value))}
+                            onChange={(e) => adjustBrightnessHandler(light.id, parseInt(e.target.value))}
                             className="slider light-slider"
                           />
                           <span className="brightness-value">{light.brightness}%</span>
                         </div>
                         <div 
                           className={`switch-control ${light.isOn ? 'on' : 'off'}`}
-                          onClick={() => toggleLight(light.id)}
+                          onClick={() => toggleLightHandler(light.id)}
                         >
                           <div className="switch-label">{light.isOn ? 'ON' : 'OFF'}</div>
                           <div className="switch-toggle">

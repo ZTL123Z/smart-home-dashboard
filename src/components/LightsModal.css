@@ -110,13 +110,54 @@
   margin: 0 0 10px 0;
   font-size: 16px;
   color: #666;
+  font-weight: 600;
 }
 
 .lights-value {
   font-size: 36px;
   font-weight: 700;
-  color: #333;
+  color: #FFA000;
   margin-bottom: 10px;
+  text-shadow: 0 2px 5px rgba(255, 160, 0, 0.2);
+  display: flex;
+  align-items: center;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.lights-value::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, #FFA000, transparent);
+  border-radius: 3px;
+}
+
+.lights-value span {
+  font-size: 42px;
+  font-weight: 800;
+  color: #FFA000;
+  margin: 0 5px;
+  transition: all 0.3s ease;
+}
+
+.lights-value span:first-child {
+  position: relative;
+  padding-right: 5px;
+}
+
+.lights-value span:first-child::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background-color: rgba(255, 160, 0, 0.3);
+  border-radius: 2px;
 }
 
 .lights-actions {
@@ -152,6 +193,26 @@
   background: #e53935;
   transform: translateY(-2px);
   box-shadow: 0 5px 15px rgba(244, 67, 54, 0.3);
+}
+
+.action-button.demo {
+  background: #2196F3;
+}
+
+.action-button.demo:hover {
+  background: #1976D2;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(33, 150, 243, 0.3);
+}
+
+.action-button.demo-active {
+  background: #9C27B0;
+}
+
+.action-button.demo-active:hover {
+  background: #7B1FA2;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(156, 39, 176, 0.3);
 }
 
 /* 新的开关控制样式 */
@@ -452,6 +513,15 @@
     align-items: flex-start;
   }
   
+  .lights-total {
+    margin-bottom: 10px;
+    width: 100%;
+  }
+  
+  .lights-value {
+    font-size: 32px;
+  }
+  
   .lights-actions {
     flex-direction: column;
     width: 100%;
@@ -492,4 +562,24 @@
   .light-item {
     padding: 15px;
   }
+}
+
+/* 添加数字变化动画 */
+@keyframes numberChange {
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  50% {
+    transform: translateY(-10px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.lights-value span.changing {
+  animation: numberChange 0.5s ease;
 } 

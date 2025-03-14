@@ -1929,3 +1929,34 @@
     height: 110px;
   }
 }
+
+/* 添加外部灯光数量变化的动画效果 */
+@keyframes countChange {
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  50% {
+    transform: translateY(-10px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.changing-count {
+  display: inline-block;
+  animation: countChange 0.5s ease;
+}
+
+.modern-stat-card .stat-value {
+  font-size: 24px;
+  font-weight: 700;
+  margin: 0 0 15px 0;
+  color: #1d1d1f;
+  transition: all 0.3s ease;
+  position: relative;
+  display: inline-block;
+}

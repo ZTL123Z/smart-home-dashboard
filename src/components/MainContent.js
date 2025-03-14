@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './MainContent.css';
 import DeviceCards from './DeviceCards';
 import { FaChartLine, FaLock, FaThermometerHalf, FaLightbulb, FaHeadset, FaCog, FaInfoCircle, FaExclamationTriangle, FaRegLightbulb, FaRegSun, FaRegMoon, FaShieldAlt, FaToggleOn, FaToggleOff } from 'react-icons/fa';
@@ -41,6 +41,37 @@ const MainContent = ({ activeSection = 'home', theme = 'white' }) => {
   // 模态框状态
   const [showEnergyModal, setShowEnergyModal] = useState(false);
   const [showLightsModal, setShowLightsModal] = useState(false);
+  
+  // 添加灯光数据状态
+  const [lights, setLights] = useState([
+    { id: 1, name: 'Living Room Main', isOn: true, brightness: 80, room: 'Living Room' },
+    { id: 2, name: 'Living Room Corner', isOn: true, brightness: 60, room: 'Living Room' },
+    { id: 3, name: 'Kitchen Ceiling', isOn: true, brightness: 100, room: 'Kitchen' },
+    { id: 4, name: 'Kitchen Counter', isOn: true, brightness: 70, room: 'Kitchen' },
+    { id: 5, name: 'Bedroom Main', isOn: true, brightness: 50, room: 'Bedroom' },
+    { id: 6, name: 'Bedroom Reading', isOn: true, brightness: 90, room: 'Bedroom' },
+    { id: 7, name: 'Bathroom', isOn: true, brightness: 100, room: 'Bathroom' },
+    { id: 8, name: 'Hallway', isOn: true, brightness: 70, room: 'Hallway' },
+    { id: 9, name: 'Dining Room', isOn: false, brightness: 0, room: 'Dining Room' },
+    { id: 10, name: 'Office Desk', isOn: false, brightness: 0, room: 'Office' },
+    { id: 11, name: 'Office Ceiling', isOn: false, brightness: 0, room: 'Office' },
+    { id: 12, name: 'Guest Room', isOn: false, brightness: 0, room: 'Guest Room' }
+  ]);
+  
+  // 添加灯光数量变化动画状态
+  const [isLightCountChanging, setIsLightCountChanging] = useState(false);
+  
+  // 监测灯光数量变化
+  useEffect(() => {
+    setIsLightCountChanging(true);
+    const timer = setTimeout(() => {
+      setIsLightCountChanging(false);
+    }, 500);
+    return () => clearTimeout(timer);
+  }, [lights]);
+  
+  // 计算活跃灯光数量
+  const activeLightsCount = lights.filter(light => light.isOn).length;
   
   // 处理编辑模式切换
   const handleEditToggle = () => {
@@ -128,6 +159,27 @@ const MainContent = ({ activeSection = 'home', theme = 'white' }) => {
   // 处理灯光详情模态框
   const handleLightsModalToggle = () => {
     setShowLightsModal(!showLightsModal);
+  };
+  
+  // 灯光相关函数
+  const toggleLight = (id) => {
+    setLights(lights.map(light => 
+      light.id === id ? { ...light, isOn: !light.isOn, brightness: !light.isOn ? 70 : 0 } : light
+    ));
+  };
+
+  const adjustBrightness = (id, value) => {
+    setLights(lights.map(light => 
+      light.id === id ? { ...light, brightness: value, isOn: value > 0 } : light
+    ));
+  };
+
+  const turnOffAllLights = () => {
+    setLights(lights.map(light => ({ ...light, isOn: false, brightness: 0 })));
+  };
+
+  const turnOnAllLights = () => {
+    setLights(lights.map(light => ({ ...light, isOn: true, brightness: 70 })));
   };
   
   // 渲染主内容区域
@@ -439,9 +491,13 @@ const MainContent = ({ activeSection = 'home', theme = 'white' }) => {
               <div className="lighting-stats modern-stats">
                 <StatCard 
                   title="Active Lights"
-                  value="8 of 12"
+                  value={
+                    <span className={isLightCountChanging ? 'changing-count' : ''}>
+                      {activeLightsCount} of {lights.length}
+                    </span>
+                  }
                   icon="lightbulb"
-                  progressValue={66}
+                  progressValue={Math.round((activeLightsCount / lights.length) * 100)}
                   color="#FFA000"
                   onClick={handleLightsModalToggle}
                 />
@@ -466,7 +522,13 @@ const MainContent = ({ activeSection = 'home', theme = 'white' }) => {
             {/* 灯光详情模态框 */}
             <LightsModal 
               isOpen={showLightsModal} 
-              onClose={handleLightsModalToggle} 
+              onClose={handleLightsModalToggle}
+              lights={lights}
+              setLights={setLights}
+              toggleLight={toggleLight}
+              adjustBrightness={adjustBrightness}
+              turnOffAllLights={turnOffAllLights}
+              turnOnAllLights={turnOnAllLights}
             />
           </div>
         );
