@@ -20,7 +20,9 @@ export default function Orb({
     // 创建动画效果
     const animate = () => {
       const time = Date.now() * 0.001;
-      const scale = 1 + Math.sin(time) * 0.03;
+      // 根据亮度调整脉动幅度
+      const pulseIntensity = 0.02 + (intensity * 0.03);
+      const scale = 1 + Math.sin(time) * pulseIntensity;
       
       orb.style.transform = `scale(${scale})`;
       requestAnimationFrame(animate);
@@ -31,7 +33,7 @@ export default function Orb({
     return () => {
       cancelAnimationFrame(animationId);
     };
-  }, [size]);
+  }, [size, intensity]);
   
   // 计算颜色的RGB值，用于生成辉光效果
   const hexToRgb = (hex) => {
@@ -45,20 +47,51 @@ export default function Orb({
   
   const rgb = hexToRgb(color);
   
+  // 确保亮度值在合理范围内
+  const actualIntensity = Math.max(0.2, Math.min(1, intensity));
+  
   // 生成辉光效果的样式
   const glowStyle = {
-    boxShadow: `0 0 10px rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, ${intensity * 0.5}),
-                0 0 20px rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, ${intensity * 0.3}),
-                0 0 30px rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, ${intensity * 0.1})`,
-    backgroundColor: `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.1)`
+    boxShadow: `0 0 ${10 + actualIntensity * 20}px rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, ${actualIntensity * 0.6}),
+                0 0 ${20 + actualIntensity * 30}px rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, ${actualIntensity * 0.4}),
+                0 0 ${30 + actualIntensity * 40}px rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, ${actualIntensity * 0.2})`,
+    backgroundColor: `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, ${actualIntensity * 0.2})`,
+    filter: `brightness(${0.7 + actualIntensity * 0.6})`,
+  };
+  
+  // 内部球体的样式
+  const innerStyle = {
+    backgroundColor: color,
+    opacity: actualIntensity,
+    boxShadow: `inset 0 0 ${20 * actualIntensity}px rgba(255, 255, 255, ${0.6 + actualIntensity * 0.4})`,
+  };
+  
+  // 光晕样式
+  const glowRingStyle = {
+    borderColor: `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, ${actualIntensity * 0.5})`,
+    opacity: actualIntensity,
+    transform: `scale(${0.9 + actualIntensity * 0.2})`,
+  };
+  
+  // 灯丝样式
+  const filamentStyle = {
+    opacity: actualIntensity,
+  };
+  
+  // 光线样式
+  const raysStyle = {
+    opacity: actualIntensity * 0.8,
+    transform: `scale(${0.8 + actualIntensity * 0.4})`,
   };
   
   return (
     <div className="orb-container" ref={orbRef} style={glowStyle}>
-      <div className="orb-inner" style={{ backgroundColor: color }}>
+      <div className="orb-inner" style={innerStyle}>
         {children}
+        <div className="orb-filament" style={filamentStyle}></div>
       </div>
-      <div className="orb-glow" style={{ borderColor: `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.3)` }}></div>
+      <div className="orb-glow" style={glowRingStyle}></div>
+      <div className="orb-rays" style={raysStyle}></div>
     </div>
   );
 } 

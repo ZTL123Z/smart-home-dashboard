@@ -9,7 +9,49 @@
   gap: 20px;
   transition: all 0.3s ease;
   position: relative;
+  height: 100%;
+  max-height: 100%;
+  overflow: hidden;
+  width: 100%;
+}
+
+.main-content-scrollable {
+  flex: 1;
   overflow-y: auto;
+  overflow-x: hidden;
+  padding-right: 10px;
+  margin-right: -10px;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+  width: 100%;
+}
+
+/* 隐藏WebKit浏览器的滚动条 */
+.main-content-scrollable::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  display: none;
+}
+
+.main-content-scrollable::-webkit-scrollbar-track {
+  display: none;
+}
+
+.main-content-scrollable::-webkit-scrollbar-thumb {
+  display: none;
+}
+
+.dark-theme .main-content-scrollable::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.lighting-content, 
+.security-content, 
+.temperature-content, 
+.support-content, 
+.settings-content {
+  width: 100%;
+  max-width: 100%;
 }
 
 .header {
@@ -800,6 +842,9 @@
   display: flex;
   flex-direction: column;
   gap: 20px;
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
 }
 
 .modern-dashboard {
@@ -807,16 +852,20 @@
   flex-direction: column;
   gap: 30px;
   padding: 20px;
+  width: 100%;
+  max-width: 100%;
+  overflow: visible;
 }
 
 .modern-card {
   background: linear-gradient(145deg, #ffffff, #f5f7fa);
   border-radius: 30px;
-  padding: 40px;
+  padding: 30px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
   transition: all 0.4s ease;
   position: relative;
   overflow: hidden;
+  width: 100%;
 }
 
 .modern-card::before {
@@ -829,7 +878,6 @@
   background: linear-gradient(90deg, #0071e3, #42a5f5);
 }
 
-/* 为Lighting Control页面创建特定的卡片样式 */
 .lighting-content .modern-card::before {
   background: linear-gradient(90deg, #FFA000, #FFD54F);
 }
@@ -843,6 +891,7 @@
   align-items: center;
   width: 200px;
   height: 200px;
+  max-width: 100%;
 }
 
 .control-icon {
@@ -861,47 +910,144 @@
   margin: 0 0 30px 0;
   color: #1d1d1f;
   letter-spacing: -0.5px;
+  position: relative;
+  display: inline-block;
+  padding: 0 15px;
+  text-align: center;
+  width: 100%;
+  background: linear-gradient(90deg, #FF8F00, #FFC107);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 2px 10px rgba(255, 160, 0, 0.15);
+  animation: textShimmer 3s infinite alternate;
+}
+
+@keyframes textShimmer {
+  0% {
+    background-position: left;
+    text-shadow: 0 2px 10px rgba(255, 160, 0, 0.15);
+  }
+  100% {
+    background-position: right;
+    text-shadow: 0 2px 15px rgba(255, 160, 0, 0.3);
+  }
+}
+
+.brightness-control h3::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  width: 80px;
+  height: 3px;
+  background: linear-gradient(90deg, #FFA000, #FFD54F);
+  transform: translateX(-50%);
+  border-radius: 3px;
+  box-shadow: 0 2px 5px rgba(255, 160, 0, 0.2);
+}
+
+/* 添加百分比数字的特殊样式 */
+.brightness-control h3 span {
+  position: relative;
+  display: inline-block;
+  font-weight: 700;
+  background: linear-gradient(135deg, #FF8F00, #FFC107);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  padding: 0 5px;
 }
 
 .brightness-slider {
   max-width: 500px;
   margin: 0 auto;
+  position: relative;
+  padding: 10px 0;
+}
+
+.brightness-slider::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 10px;
+  background: linear-gradient(90deg, rgba(255, 160, 0, 0.2), rgba(255, 193, 7, 0.5));
+  border-radius: 5px;
+  transform: translateY(-50%);
+  z-index: 0;
+  animation: pulseTrack 4s infinite alternate;
+}
+
+@keyframes pulseTrack {
+  0% {
+    box-shadow: 0 0 5px rgba(255, 160, 0, 0.2);
+  }
+  100% {
+    box-shadow: 0 0 15px rgba(255, 160, 0, 0.4);
+  }
 }
 
 .modern-slider {
   height: 10px;
   border-radius: 5px;
-  background: #e0e0e0;
+  background: transparent;
   outline: none;
   -webkit-appearance: none;
+  width: 100%;
+  position: relative;
+  z-index: 1;
+}
+
+.modern-slider::-webkit-slider-runnable-track {
+  height: 10px;
+  border-radius: 5px;
+  background: linear-gradient(90deg, rgba(255, 160, 0, 0.3), rgba(255, 193, 7, 0.7));
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 .modern-slider::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
-  width: 24px;
-  height: 24px;
+  width: 28px;
+  height: 28px;
   border-radius: 50%;
-  background: #0071e3;
+  background: #FFA000;
   cursor: pointer;
-  box-shadow: 0 2px 6px rgba(0, 113, 227, 0.3);
+  box-shadow: 0 2px 6px rgba(255, 160, 0, 0.4);
   transition: all 0.3s ease;
+  margin-top: -9px;
+  border: 3px solid #fff;
+  position: relative;
+  z-index: 2;
+  animation: glowThumb 3s infinite alternate;
 }
 
-/* 为Lighting Control页面创建特定的滑块样式 */
+@keyframes glowThumb {
+  0% {
+    box-shadow: 0 2px 6px rgba(255, 160, 0, 0.4);
+  }
+  100% {
+    box-shadow: 0 2px 15px rgba(255, 160, 0, 0.8), 0 0 5px rgba(255, 255, 255, 0.5);
+  }
+}
+
 .lighting-content .modern-slider::-webkit-slider-thumb {
-  background: #FFA000;
-  box-shadow: 0 2px 6px rgba(255, 160, 0, 0.3);
+  background: linear-gradient(135deg, #FFA000, #FFD54F);
+  box-shadow: 0 2px 10px rgba(255, 160, 0, 0.5);
 }
 
 .modern-slider::-webkit-slider-thumb:hover {
-  transform: scale(1.1);
-  box-shadow: 0 4px 8px rgba(0, 113, 227, 0.4);
+  transform: scale(1.15);
+  box-shadow: 0 4px 12px rgba(255, 160, 0, 0.6);
 }
 
-/* 为Lighting Control页面创建特定的滑块悬停样式 */
 .lighting-content .modern-slider::-webkit-slider-thumb:hover {
-  box-shadow: 0 4px 8px rgba(255, 160, 0, 0.4);
+  box-shadow: 0 4px 15px rgba(255, 160, 0, 0.7);
+}
+
+.modern-slider::-webkit-slider-thumb:active {
+  transform: scale(1.2);
+  background: linear-gradient(135deg, #FF8F00, #FFB300);
 }
 
 .light-modes h3 {
@@ -917,6 +1063,8 @@
   display: flex;
   justify-content: center;
   gap: 20px;
+  flex-wrap: wrap;
+  width: 100%;
 }
 
 .modern-mode-button {
@@ -924,8 +1072,8 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 20px;
-  min-width: 120px;
+  padding: 15px;
+  min-width: 100px;
   border: none;
   border-radius: 20px;
   background: white;
@@ -955,7 +1103,6 @@
   box-shadow: 0 8px 16px rgba(0, 113, 227, 0.3);
 }
 
-/* 为Lighting Control页面创建特定的激活按钮样式 */
 .lighting-content .modern-mode-button.active {
   background: #FFA000;
   box-shadow: 0 8px 16px rgba(255, 160, 0, 0.3);
@@ -968,14 +1115,17 @@
 
 .modern-stats {
   display: flex;
-  gap: 30px;
+  gap: 20px;
+  flex-wrap: wrap;
+  width: 100%;
 }
 
 .modern-stat-card {
   flex: 1;
+  min-width: 250px;
   display: flex;
   align-items: center;
-  padding: 30px;
+  padding: 20px;
   border-radius: 25px;
   background: linear-gradient(145deg, #ffffff, #f5f7fa);
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
@@ -985,37 +1135,35 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 70px;
-  height: 70px;
+  width: 50px;
+  height: 50px;
   border-radius: 20px;
   background: rgba(0, 113, 227, 0.08);
   margin-right: 20px;
 }
 
-/* 为Lighting Control页面创建特定的图标容器样式 */
 .lighting-content .stat-icon-container {
   background: rgba(255, 160, 0, 0.08);
 }
 
 .modern-stat-card .stat-icon {
-  font-size: 30px;
+  font-size: 24px;
   color: #0071e3;
 }
 
-/* 为Lighting Control页面创建特定的图标颜色 */
 .lighting-content .modern-stat-card .stat-icon {
   color: #FFA000;
 }
 
 .modern-stat-card .stat-info h3 {
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 600;
   margin: 0 0 10px 0;
   color: #1d1d1f;
 }
 
 .modern-stat-card .stat-info p {
-  font-size: 24px;
+  font-size: 20px;
   font-weight: 700;
   margin: 0 0 15px 0;
   color: #1d1d1f;
@@ -1035,7 +1183,6 @@
   border-radius: 4px;
 }
 
-/* 为Lighting Control页面创建特定的进度条样式 */
 .lighting-content .modern-stat-card .progress-bar {
   background: linear-gradient(90deg, #FFA000, #FFD54F);
 }
@@ -1109,7 +1256,6 @@
   left: 31px;
 }
 
-/* 为Lighting Control页面创建特定的开关样式 */
 .lighting-content .modern-room-item .toggle-switch.active {
   background: #FFA000;
 }
@@ -1541,5 +1687,36 @@
   
   .camera-grid {
     grid-template-columns: 1fr;
+  }
+  
+  .modern-card {
+    padding: 20px;
+  }
+  
+  .modern-mode-button {
+    min-width: 80px;
+    padding: 10px;
+  }
+  
+  .modern-stat-card {
+    min-width: 100%;
+    margin-bottom: 10px;
+  }
+  
+  .stat-icon-container {
+    width: 50px;
+    height: 50px;
+  }
+  
+  .modern-stat-card .stat-icon {
+    font-size: 24px;
+  }
+  
+  .modern-stat-card .stat-info h3 {
+    font-size: 16px;
+  }
+  
+  .modern-stat-card .stat-info p {
+    font-size: 20px;
   }
 }

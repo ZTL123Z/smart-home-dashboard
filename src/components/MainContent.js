@@ -364,13 +364,13 @@ const MainContent = ({ activeSection = 'home', theme = 'white' }) => {
             <div className="lighting-dashboard modern-dashboard">
               <div className="brightness-control modern-card">
                 <div className="icon-container light-icon-container">
-                  <CircleBackground size="200px" color="#a0c4ff" dashArray="5,5">
-                    <Orb color="#ffc107" size="160px" intensity={0.8}>
+                  <CircleBackground size="160px" color="#a0c4ff" dashArray="5,5">
+                    <Orb color="#ffc107" size="120px" intensity={lightBrightness/100}>
                       <FaLightbulb className="control-icon" />
                     </Orb>
                   </CircleBackground>
                 </div>
-                <h3>Brightness: {lightBrightness}%</h3>
+                <h3>Brightness: <span>{lightBrightness}%</span></h3>
                 <div className="brightness-slider">
                   <input 
                     type="range" 
@@ -653,7 +653,9 @@ const MainContent = ({ activeSection = 'home', theme = 'white' }) => {
         </div>
       </div>
       
-      {renderMainContent()}
+      <div className="main-content-scrollable">
+        {renderMainContent()}
+      </div>
     </div>
   );
 };
