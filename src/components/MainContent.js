@@ -3,6 +3,7 @@ import './MainContent.css';
 import RoomTabs from './RoomTabs';
 import DeviceCards from './DeviceCards';
 import { FaChartLine, FaLock, FaThermometerHalf, FaLightbulb, FaHeadset, FaCog, FaInfoCircle, FaExclamationTriangle, FaRegLightbulb, FaRegSun, FaRegMoon, FaShieldAlt, FaToggleOn, FaToggleOff } from 'react-icons/fa';
+import ShapeBlur from './ShapeBlur';
 
 const MainContent = ({ activeSection = 'home', theme = 'white' }) => {
   // 状态管理
@@ -434,20 +435,34 @@ const MainContent = ({ activeSection = 'home', theme = 'white' }) => {
             </div>
             
             <div className="support-dashboard centered-support">
-              <div className="support-center-card">
-                <div className="icon-container">
-                  <FaInfoCircle className="support-icon" />
+              <div className="support-center-card" style={{ position: 'relative', overflow: 'hidden' }}>
+                <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 0 }}>
+                  <ShapeBlur
+                    className="support-shape-blur"
+                    variation={1}
+                    pixelRatioProp={window.devicePixelRatio || 1}
+                    shapeSize={0.8}
+                    roundness={0.6}
+                    borderSize={0.03}
+                    circleSize={0.7}
+                    circleEdge={0.3}
+                  />
                 </div>
-                <h3>Help Center</h3>
-                <p>Browse our knowledge base and find solutions to your questions</p>
-                <a 
-                  href="https://www.baidu.com" 
-                  target="_blank" 
-                  rel="noopener noreferrer" 
-                  className="support-button"
-                >
-                  View Articles
-                </a>
+                <div style={{ position: 'relative', zIndex: 1 }}>
+                  <div className="icon-container">
+                    <FaInfoCircle className="support-icon" />
+                  </div>
+                  <h3>Help Center</h3>
+                  <p>Browse our knowledge base and find solutions to your questions</p>
+                  <a 
+                    href="https://www.baidu.com" 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="support-button"
+                  >
+                    View Articles
+                  </a>
+                </div>
               </div>
             </div>
           </div>
