@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
 import './Sidebar.css';
-import { FaHome, FaShieldAlt, FaThermometerHalf, FaLightbulb, FaHeadset, FaCog } from 'react-icons/fa';
+import { FaHome, FaShieldAlt, FaThermometerHalf, FaLightbulb, FaHeadset, FaCog, FaChartLine, FaLock, FaInfoCircle, FaExclamationTriangle, FaRegLightbulb, FaRegSun, FaRegMoon } from 'react-icons/fa';
 import UserAvatar from './UserAvatar';
 
-const Sidebar = () => {
+const Sidebar = ({ onMenuItemClick }) => {
   const [homeName, setHomeName] = useState("Martine's Home");
   const [isEditing, setIsEditing] = useState(false);
+  const [activeMenuItem, setActiveMenuItem] = useState('home');
+  const [accessLevel, setAccessLevel] = useState("Limited access");
+  const [showAccessDropdown, setShowAccessDropdown] = useState(false);
   
   // 处理编辑图标点击
   const handleEditClick = () => {
@@ -21,6 +24,26 @@ const Sidebar = () => {
   const handleNameSubmit = (e) => {
     if (e.key === 'Enter' || e.type === 'blur') {
       setIsEditing(false);
+    }
+  };
+  
+  // 处理访问级别切换
+  const handleAccessToggle = () => {
+    setShowAccessDropdown(!showAccessDropdown);
+  };
+  
+  // 处理选择访问级别
+  const handleAccessSelect = (level) => {
+    setAccessLevel(level);
+    setShowAccessDropdown(false);
+  };
+  
+  // 处理菜单项点击
+  const handleMenuItemClick = (menuItem) => {
+    setActiveMenuItem(menuItem);
+    // 通知父组件更新主内容区域
+    if (onMenuItemClick) {
+      onMenuItemClick(menuItem);
     }
   };
 
@@ -51,37 +74,82 @@ const Sidebar = () => {
           <span className="more-users">+2</span>
         </div>
         <div className="access-control">
-          <span>Limited access</span>
-          <span className="dropdown-icon">▼</span>
+          <div className="access-level" onClick={handleAccessToggle}>
+            <span>{accessLevel}</span>
+            <span className="dropdown-icon">▼</span>
+          </div>
+          {showAccessDropdown && (
+            <div className="access-dropdown">
+              <div 
+                className={`access-option ${accessLevel === "Full access" ? "active" : ""}`}
+                onClick={() => handleAccessSelect("Full access")}
+              >
+                <span>Full access</span>
+                <span className="access-info">Unlimited users</span>
+              </div>
+              <div 
+                className={`access-option ${accessLevel === "Limited access" ? "active" : ""}`}
+                onClick={() => handleAccessSelect("Limited access")}
+              >
+                <span>Limited access</span>
+                <span className="access-info">Max 6 users</span>
+              </div>
+              <div 
+                className={`access-option ${accessLevel === "Basic access" ? "active" : ""}`}
+                onClick={() => handleAccessSelect("Basic access")}
+              >
+                <span>Basic access</span>
+                <span className="access-info">Max 3 users</span>
+              </div>
+            </div>
+          )}
           <button className="invite-button">+ Invite</button>
         </div>
       </div>
       
       {/* 侧边栏菜单 */}
       <div className="sidebar-menu">
-        <div className="menu-item active">
+        <div 
+          className={`menu-item ${activeMenuItem === 'home' ? 'active' : ''}`}
+          onClick={() => handleMenuItemClick('home')}
+        >
           <FaHome className="menu-icon" />
           <span>Home</span>
         </div>
-        <div className="menu-item">
+        <div 
+          className={`menu-item ${activeMenuItem === 'security' ? 'active' : ''}`}
+          onClick={() => handleMenuItemClick('security')}
+        >
           <FaShieldAlt className="menu-icon" />
           <span>Security</span>
           <span className="pro-badge">PRO+</span>
         </div>
-        <div className="menu-item">
+        <div 
+          className={`menu-item ${activeMenuItem === 'temperature' ? 'active' : ''}`}
+          onClick={() => handleMenuItemClick('temperature')}
+        >
           <FaThermometerHalf className="menu-icon" />
           <span>Temperature</span>
         </div>
-        <div className="menu-item">
+        <div 
+          className={`menu-item ${activeMenuItem === 'lighting' ? 'active' : ''}`}
+          onClick={() => handleMenuItemClick('lighting')}
+        >
           <FaLightbulb className="menu-icon" />
           <span>Lighting</span>
           <span className="percentage">60%</span>
         </div>
-        <div className="menu-item">
+        <div 
+          className={`menu-item ${activeMenuItem === 'support' ? 'active' : ''}`}
+          onClick={() => handleMenuItemClick('support')}
+        >
           <FaHeadset className="menu-icon" />
           <span>Support</span>
         </div>
-        <div className="menu-item">
+        <div 
+          className={`menu-item ${activeMenuItem === 'settings' ? 'active' : ''}`}
+          onClick={() => handleMenuItemClick('settings')}
+        >
           <FaCog className="menu-icon" />
           <span>Settings</span>
         </div>
