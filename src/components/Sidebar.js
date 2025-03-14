@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import './Sidebar.css';
 import { FaHome, FaShieldAlt, FaThermometerHalf, FaLightbulb, FaHeadset, FaCog, FaChartLine, FaLock, FaInfoCircle, FaExclamationTriangle, FaRegLightbulb, FaRegSun, FaRegMoon } from 'react-icons/fa';
 import UserAvatar from './UserAvatar';
+import ColorPicker from './ColorPicker';
 
-const Sidebar = ({ onMenuItemClick }) => {
+const Sidebar = ({ onMenuItemClick, onThemeChange, onColorChange, currentTheme, currentColor }) => {
   const [homeName, setHomeName] = useState("Martine's Home");
   const [isEditing, setIsEditing] = useState(false);
   const [activeMenuItem, setActiveMenuItem] = useState('home');
@@ -11,6 +12,14 @@ const Sidebar = ({ onMenuItemClick }) => {
   const [showAccessDropdown, setShowAccessDropdown] = useState(false);
   const [activeDevice, setActiveDevice] = useState('speaker'); // 默认选中扬声器设备
   const [isPlaying, setIsPlaying] = useState(true); // 播放状态
+  const [showColorPicker, setShowColorPicker] = useState(false); // 颜色选择器显示状态
+  
+  // 预定义的颜色选项
+  const colorOptions = [
+    { id: 'yellow', color: '#FFD700' },
+    { id: 'pink', color: '#FF69B4' },
+    { id: 'blue', color: '#4169E1' }
+  ];
   
   // 设备数据
   const devices = [
@@ -71,6 +80,37 @@ const Sidebar = ({ onMenuItemClick }) => {
   // 处理播放/暂停切换
   const handlePlayToggle = () => {
     setIsPlaying(!isPlaying);
+  };
+  
+  // 处理主题切换
+  const handleThemeClick = (theme) => {
+    if (onThemeChange) {
+      onThemeChange(theme);
+    }
+  };
+  
+  // 处理颜色选择
+  const handleColorClick = (color) => {
+    if (onColorChange) {
+      onColorChange(color);
+    }
+  };
+  
+  // 处理颜色编辑器打开
+  const handleOpenColorEditor = () => {
+    setShowColorPicker(true);
+  };
+  
+  // 处理颜色编辑器关闭
+  const handleCloseColorEditor = () => {
+    setShowColorPicker(false);
+  };
+  
+  // 处理自定义颜色选择
+  const handleCustomColorSelect = (color) => {
+    if (onColorChange) {
+      onColorChange(color);
+    }
   };
   
   // 获取当前活跃设备
@@ -210,7 +250,7 @@ const Sidebar = ({ onMenuItemClick }) => {
   };
 
   return (
-    <div className="sidebar">
+    <div className={`sidebar ${currentTheme === 'dark' ? 'dark-theme' : ''}`}>
       <div className="sidebar-header">
         <div className="home-title">
           {isEditing ? (
@@ -346,23 +386,46 @@ const Sidebar = ({ onMenuItemClick }) => {
         <div className="theme-settings">
           <div className="setting-label">Color theme</div>
           <div className="theme-options">
-            <button className="theme-option active">White</button>
-            <button className="theme-option">Dark</button>
+            <button 
+              className={`theme-option ${currentTheme === 'white' ? 'active' : ''}`}
+              onClick={() => handleThemeClick('white')}
+            >
+              White
+            </button>
+            <button 
+              className={`theme-option ${currentTheme === 'dark' ? 'active' : ''}`}
+              onClick={() => handleThemeClick('dark')}
+            >
+              Dark
+            </button>
           </div>
         </div>
         <div className="color-settings">
           <div className="setting-label">App color</div>
           <div className="color-options">
-            <button className="color-option" style={{ backgroundColor: '#FFD700' }}></button>
-            <button className="color-option" style={{ backgroundColor: '#FF69B4' }}></button>
-            <button className="color-option" style={{ backgroundColor: '#4169E1' }}></button>
-            <button className="color-picker">
+            {colorOptions.map(option => (
+              <button 
+                key={option.id}
+                className={`color-option ${currentColor === option.color ? 'active' : ''}`}
+                style={{ backgroundColor: option.color }}
+                onClick={() => handleColorClick(option.color)}
+              ></button>
+            ))}
+            <button className="color-picker" onClick={handleOpenColorEditor}>
               <span className="color-picker-icon">🎨</span>
               <span>Open editor</span>
             </button>
           </div>
         </div>
       </div>
+      
+      {/* 颜色选择器 */}
+      <ColorPicker 
+        isOpen={showColorPicker}
+        onClose={handleCloseColorEditor}
+        onColorSelect={handleCustomColorSelect}
+        initialColor={currentColor}
+      />
     </div>
   );
 };

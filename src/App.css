@@ -37,6 +37,20 @@
   }
 }
 
+:root {
+  --app-primary-color: #4285f4;
+  --app-background-light: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  --app-background-dark: linear-gradient(135deg, #121212 0%, #1e1e1e 100%);
+  --app-text-light: #333;
+  --app-text-dark: #f0f0f0;
+  --app-card-light: white;
+  --app-card-dark: #1e1e1e;
+  --app-border-light: #eee;
+  --app-border-dark: rgba(255, 255, 255, 0.05);
+  --app-shadow-light: rgba(0, 0, 0, 0.05);
+  --app-shadow-dark: rgba(0, 0, 0, 0.2);
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -52,14 +66,16 @@
   background-color: #f0f4f8;
   position: relative;
   overflow: hidden;
-  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  background: var(--app-background-light);
+  color: var(--app-text-light);
+  transition: all 0.3s ease;
 }
 
 .app-title {
   padding: 20px;
   font-size: 24px;
   font-weight: bold;
-  color: #4285f4; /* 改为蓝色 */
+  color: var(--app-primary-color);
   background-color: transparent;
   position: absolute;
   top: 0;
@@ -75,4 +91,19 @@
   position: relative;
   z-index: 1;
   overflow: hidden;
+}
+
+/* 全局暗色主题样式 */
+.app.dark-theme {
+  background: var(--app-background-dark);
+  color: var(--app-text-dark);
+}
+
+.dark-theme .app-title {
+  color: var(--app-primary-color);
+}
+
+/* 主题切换过渡效果 */
+.app, .app *, .sidebar, .sidebar *, .main-content, .main-content * {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
 }

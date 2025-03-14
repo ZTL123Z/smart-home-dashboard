@@ -4,7 +4,7 @@ import RoomTabs from './RoomTabs';
 import DeviceCards from './DeviceCards';
 import { FaChartLine, FaLock, FaThermometerHalf, FaLightbulb, FaHeadset, FaCog, FaInfoCircle, FaExclamationTriangle, FaRegLightbulb, FaRegSun, FaRegMoon, FaShieldAlt, FaToggleOn, FaToggleOff } from 'react-icons/fa';
 
-const MainContent = ({ activeSection = 'home' }) => {
+const MainContent = ({ activeSection = 'home', theme = 'white' }) => {
   // 状态管理
   const [isEditing, setIsEditing] = useState(false);
   const [isPowerOn, setIsPowerOn] = useState(true);
@@ -616,7 +616,7 @@ const MainContent = ({ activeSection = 'home' }) => {
   };
 
   return (
-    <div className="main-content">
+    <div className={`main-content ${theme === 'dark' ? 'dark-theme' : ''}`}>
       <div className="header">
         <div className="edit-section">
           <span 
