@@ -1,0 +1,495 @@
+.lights-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  backdrop-filter: blur(5px);
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.lights-modal {
+  background: white;
+  border-radius: 20px;
+  width: 90%;
+  max-width: 800px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  animation: slideUp 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  position: relative;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.lights-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 25px;
+  border-bottom: 1px solid #eee;
+}
+
+.lights-modal-title {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.lights-modal-title h2 {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 600;
+  color: #333;
+}
+
+.lights-icon {
+  font-size: 24px;
+  color: #FFA000;
+}
+
+.close-button {
+  background: none;
+  border: none;
+  font-size: 20px;
+  color: #999;
+  cursor: pointer;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.close-button:hover {
+  background-color: #f5f5f5;
+  color: #333;
+}
+
+.lights-modal-content {
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.lights-summary {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.lights-total h3 {
+  margin: 0 0 10px 0;
+  font-size: 16px;
+  color: #666;
+}
+
+.lights-value {
+  font-size: 36px;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.lights-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.action-button {
+  background: #f44336;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 20px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.action-button.turn-on {
+  background: #4caf50;
+}
+
+.action-button.turn-on:hover {
+  background: #43a047;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(76, 175, 80, 0.3);
+}
+
+.action-button:hover {
+  background: #e53935;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(244, 67, 54, 0.3);
+}
+
+/* 新的开关控制样式 */
+.switch-control {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.switch-label {
+  font-size: 12px;
+  font-weight: 600;
+  min-width: 30px;
+  text-align: center;
+}
+
+.switch-control.on .switch-label {
+  color: #FFA000;
+}
+
+.switch-control.off .switch-label {
+  color: #9e9e9e;
+}
+
+.switch-toggle {
+  width: 46px;
+  height: 24px;
+  background-color: #e0e0e0;
+  border-radius: 12px;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.switch-control.on .switch-toggle {
+  background-color: rgba(255, 160, 0, 0.5);
+}
+
+.switch-handle {
+  width: 20px;
+  height: 20px;
+  background-color: white;
+  border-radius: 50%;
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.switch-control.on .switch-handle {
+  left: 24px;
+  background-color: #FFA000;
+}
+
+.switch-control:hover .switch-toggle {
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.switch-control.on:hover .switch-toggle {
+  box-shadow: 0 0 8px rgba(255, 160, 0, 0.3);
+}
+
+.lights-by-room {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.room-section {
+  background: #f9f9f9;
+  border-radius: 15px;
+  padding: 20px;
+}
+
+.room-section h3 {
+  margin: 0 0 15px 0;
+  font-size: 18px;
+  color: #333;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 10px;
+}
+
+.room-lights-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.light-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  background: white;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+  border: 1px solid #eee;
+  position: relative;
+}
+
+.light-item:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.light-item.active {
+  border-left: 4px solid #FFA000;
+}
+
+.light-info {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  position: relative;
+}
+
+.light-icon {
+  width: 40px;
+  height: 40px;
+  background: rgba(255, 160, 0, 0.1);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #FFA000;
+  font-size: 20px;
+  transition: all 0.3s ease;
+}
+
+.light-item.active .light-icon {
+  background: rgba(255, 160, 0, 0.2);
+  animation: pulse-light 2s infinite alternate;
+}
+
+@keyframes pulse-light {
+  0% {
+    box-shadow: 0 0 0 rgba(255, 160, 0, 0.4);
+  }
+  100% {
+    box-shadow: 0 0 15px rgba(255, 160, 0, 0.7);
+  }
+}
+
+.light-name {
+  font-weight: 500;
+  color: #333;
+}
+
+.light-controls {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.brightness-slider {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.light-slider {
+  width: 120px;
+  height: 8px;
+  -webkit-appearance: none;
+  appearance: none;
+  background: #e0e0e0;
+  outline: none;
+  border-radius: 4px;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.light-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #FFA000;
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  border: 2px solid white;
+}
+
+.light-item.active .light-slider {
+  background: linear-gradient(90deg, rgba(255, 160, 0, 0.3), rgba(255, 193, 7, 0.6));
+}
+
+.brightness-value {
+  font-size: 14px;
+  font-weight: 500;
+  color: #666;
+  min-width: 40px;
+}
+
+.toggle-button {
+  background: #e0e0e0;
+  border: none;
+  border-radius: 20px;
+  padding: 6px 12px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #666;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  min-width: 50px;
+}
+
+.toggle-button.on {
+  background: #FFA000;
+  color: white;
+}
+
+.toggle-button:hover {
+  transform: translateY(-2px);
+}
+
+.lights-tips {
+  background: #f9f9f9;
+  border-radius: 15px;
+  padding: 20px;
+}
+
+.lights-tips h3 {
+  margin: 0 0 15px 0;
+  font-size: 18px;
+  color: #333;
+}
+
+.tips-list {
+  margin: 0;
+  padding-left: 20px;
+}
+
+.tips-list li {
+  margin-bottom: 10px;
+  color: #666;
+}
+
+.lights-modal-footer {
+  padding: 20px 25px;
+  border-top: 1px solid #eee;
+  display: flex;
+  justify-content: flex-end;
+  gap: 15px;
+}
+
+.settings-button {
+  background: #FFA000;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 20px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.settings-button:hover {
+  background: #FF8F00;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(255, 160, 0, 0.3);
+}
+
+.close-button-text {
+  background: none;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 10px 20px;
+  color: #666;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.close-button-text:hover {
+  background: #f5f5f5;
+}
+
+.toggle-status-container,
+.toggle-status,
+.toggle-button {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .lights-modal {
+    width: 95%;
+    max-height: 80vh;
+  }
+  
+  .lights-summary {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .lights-actions {
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  .action-button {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .light-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+  
+  .light-controls {
+    width: 100%;
+    justify-content: space-between;
+  }
+  
+  .brightness-slider {
+    flex: 1;
+  }
+}
+
+@media (min-width: 768px) {
+  .toggle-button {
+    display: none;
+  }
+}
+
+@media (max-width: 767px) {
+  .toggle-status-container {
+    display: none;
+  }
+  
+  .light-item {
+    padding: 15px;
+  }
+} 

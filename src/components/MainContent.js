@@ -6,6 +6,9 @@ import ShapeBlur from './ShapeBlur';
 import Orb from './Orb';
 import CircleBackground from './CircleBackground';
 import RoomNav from './RoomNav';
+import StatCard from './StatCard';
+import EnergyModal from './EnergyModal';
+import LightsModal from './LightsModal';
 
 const MainContent = ({ activeSection = 'home', theme = 'white' }) => {
   // 状态管理
@@ -34,6 +37,10 @@ const MainContent = ({ activeSection = 'home', theme = 'white' }) => {
   
   // 房间状态
   const [activeRoom, setActiveRoom] = useState(0);
+  
+  // 模态框状态
+  const [showEnergyModal, setShowEnergyModal] = useState(false);
+  const [showLightsModal, setShowLightsModal] = useState(false);
   
   // 处理编辑模式切换
   const handleEditToggle = () => {
@@ -111,6 +118,16 @@ const MainContent = ({ activeSection = 'home', theme = 'white' }) => {
   // 处理房间切换
   const handleRoomChange = (roomIndex) => {
     setActiveRoom(roomIndex);
+  };
+  
+  // 处理能源使用详情模态框
+  const handleEnergyModalToggle = () => {
+    setShowEnergyModal(!showEnergyModal);
+  };
+  
+  // 处理灯光详情模态框
+  const handleLightsModalToggle = () => {
+    setShowLightsModal(!showLightsModal);
   };
   
   // 渲染主内容区域
@@ -420,33 +437,37 @@ const MainContent = ({ activeSection = 'home', theme = 'white' }) => {
               </div>
               
               <div className="lighting-stats modern-stats">
-                <div className="stat-card modern-stat-card">
-                  <div className="stat-icon-container">
-                    <FaLightbulb className="stat-icon" />
-                  </div>
-                  <div className="stat-info">
-                    <h3>Active Lights</h3>
-                    <p>8 of 12</p>
-                    <div className="stat-progress">
-                      <div className="progress-bar" style={{ width: '66%' }}></div>
-                    </div>
-                  </div>
-                </div>
-                <div className="stat-card modern-stat-card">
-                  <div className="stat-icon-container">
-                    <FaChartLine className="stat-icon" />
-                  </div>
-                  <div className="stat-info">
-                    <h3>Energy Usage</h3>
-                    <p>0.8 kWh</p>
-                    <div className="stat-progress">
-                      <div className="progress-bar" style={{ width: '30%' }}></div>
-                    </div>
-                    <p className="stat-comparison">10% less than yesterday</p>
-                  </div>
-                </div>
+                <StatCard 
+                  title="Active Lights"
+                  value="8 of 12"
+                  icon="lightbulb"
+                  progressValue={66}
+                  color="#FFA000"
+                  onClick={handleLightsModalToggle}
+                />
+                <StatCard 
+                  title="Energy Usage"
+                  value="0.8 kWh"
+                  icon="chart"
+                  progressValue={30}
+                  comparisonText="10% less than yesterday"
+                  color="#4caf50"
+                  onClick={handleEnergyModalToggle}
+                />
               </div>
             </div>
+            
+            {/* 能源使用详情模态框 */}
+            <EnergyModal 
+              isOpen={showEnergyModal} 
+              onClose={handleEnergyModalToggle} 
+            />
+            
+            {/* 灯光详情模态框 */}
+            <LightsModal 
+              isOpen={showLightsModal} 
+              onClose={handleLightsModalToggle} 
+            />
           </div>
         );
       
