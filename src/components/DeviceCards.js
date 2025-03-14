@@ -26,12 +26,6 @@ const DeviceCards = () => {
             <span className="plus-icon">+</span>
             <p>Add device by Bluetooth</p>
           </div>
-          <div className="tooltip">
-            <div className="tooltip-content">
-              <span className="airpods-icon">🎧</span>
-              <p>You can add your new AirPods Pro too</p>
-            </div>
-          </div>
         </div>
         
         <div className="upload-device-card">
