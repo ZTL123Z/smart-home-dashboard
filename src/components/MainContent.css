@@ -836,17 +836,19 @@
 
 .light-icon-container {
   margin: 0 auto 30px;
-  background: rgba(255, 193, 7, 0.08);
-}
-
-.light-icon-container::after {
-  border-color: rgba(255, 193, 7, 0.3);
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 200px;
+  height: 200px;
 }
 
 .control-icon {
-  font-size: 60px;
-  color: #ffc107;
-  filter: drop-shadow(0 4px 6px rgba(255, 193, 7, 0.2));
+  font-size: 40px;
+  color: #333;
+  z-index: 2;
 }
 
 .brightness-control {

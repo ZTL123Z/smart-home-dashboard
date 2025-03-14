@@ -4,6 +4,8 @@ import RoomTabs from './RoomTabs';
 import DeviceCards from './DeviceCards';
 import { FaChartLine, FaLock, FaThermometerHalf, FaLightbulb, FaHeadset, FaCog, FaInfoCircle, FaExclamationTriangle, FaRegLightbulb, FaRegSun, FaRegMoon, FaShieldAlt, FaToggleOn, FaToggleOff } from 'react-icons/fa';
 import ShapeBlur from './ShapeBlur';
+import Orb from './Orb';
+import CircleBackground from './CircleBackground';
 
 const MainContent = ({ activeSection = 'home', theme = 'white' }) => {
   // 状态管理
@@ -354,7 +356,11 @@ const MainContent = ({ activeSection = 'home', theme = 'white' }) => {
             <div className="lighting-dashboard modern-dashboard">
               <div className="brightness-control modern-card">
                 <div className="icon-container light-icon-container">
-                  <FaLightbulb className="control-icon" />
+                  <CircleBackground size="200px" color="#a0c4ff" dashArray="5,5">
+                    <Orb color="#ffc107" size="160px" intensity={0.8}>
+                      <FaLightbulb className="control-icon" />
+                    </Orb>
+                  </CircleBackground>
                 </div>
                 <h3>Brightness: {lightBrightness}%</h3>
                 <div className="brightness-slider">
