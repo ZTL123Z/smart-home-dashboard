@@ -9,6 +9,18 @@ const Sidebar = ({ onMenuItemClick }) => {
   const [activeMenuItem, setActiveMenuItem] = useState('home');
   const [accessLevel, setAccessLevel] = useState("Limited access");
   const [showAccessDropdown, setShowAccessDropdown] = useState(false);
+  const [activeDevice, setActiveDevice] = useState('speaker'); // 默认选中扬声器设备
+  const [isPlaying, setIsPlaying] = useState(true); // 播放状态
+  
+  // 设备数据
+  const devices = [
+    { id: 'plant', icon: '🌱', name: 'Smart Plant', color: '#4CAF50' },
+    { id: 'phone', icon: '📱', name: 'Smartphone', color: '#2196F3' },
+    { id: 'laptop', icon: '💻', name: 'Laptop', color: '#03A9F4' },
+    { id: 'speaker', icon: '🔊', name: 'Speaker', color: '#FF5722' },
+    { id: 'tv', icon: '📺', name: 'Smart TV', color: '#9C27B0' },
+    { id: 'add', icon: '+', name: 'Add Device', color: '#E0E0E0' }
+  ];
   
   // 处理编辑图标点击
   const handleEditClick = () => {
@@ -44,6 +56,156 @@ const Sidebar = ({ onMenuItemClick }) => {
     // 通知父组件更新主内容区域
     if (onMenuItemClick) {
       onMenuItemClick(menuItem);
+    }
+  };
+  
+  // 处理设备点击
+  const handleDeviceClick = (deviceId) => {
+    if (deviceId === 'add') {
+      alert('Add new device functionality would open here');
+      return;
+    }
+    setActiveDevice(deviceId);
+  };
+  
+  // 处理播放/暂停切换
+  const handlePlayToggle = () => {
+    setIsPlaying(!isPlaying);
+  };
+  
+  // 获取当前活跃设备
+  const getActiveDevice = () => {
+    return devices.find(device => device.id === activeDevice);
+  };
+  
+  // 获取TiDot卡片样式
+  const getTiDotCardStyle = () => {
+    const device = getActiveDevice();
+    
+    // 根据设备类型返回不同的渐变背景
+    switch (device.id) {
+      case 'plant':
+        return { background: 'linear-gradient(135deg, #2E7D32, #4CAF50, #8BC34A)' };
+      case 'phone':
+        return { background: 'linear-gradient(135deg, #1565C0, #2196F3, #64B5F6)' };
+      case 'laptop':
+        return { background: 'linear-gradient(135deg, #0277BD, #03A9F4, #4FC3F7)' };
+      case 'speaker':
+        return { background: 'linear-gradient(135deg, #BF360C, #FF5722, #FF8A65)' };
+      case 'tv':
+        return { background: 'linear-gradient(135deg, #6A1B9A, #9C27B0, #CE93D8)' };
+      default:
+        return { background: 'linear-gradient(135deg, #8B4513, #A0522D, #CD853F)' };
+    }
+  };
+  
+  // 渲染TiDot卡片内容
+  const renderTiDotContent = () => {
+    const device = getActiveDevice();
+    
+    // 根据设备类型返回不同的内容
+    switch (device.id) {
+      case 'plant':
+        return (
+          <>
+            <div className="speaker-title">Plant Monitor</div>
+            <div className="plant-status">
+              <div className="plant-info">
+                <span className="plant-icon">💧</span>
+                <span>Moisture: 65%</span>
+              </div>
+              <div className="plant-info">
+                <span className="plant-icon">☀️</span>
+                <span>Light: Good</span>
+              </div>
+            </div>
+          </>
+        );
+      case 'phone':
+        return (
+          <>
+            <div className="speaker-title">Smartphone</div>
+            <div className="phone-status">
+              <div className="battery-info">
+                <span className="battery-icon">🔋</span>
+                <span>Battery: 78%</span>
+              </div>
+              <div className="connection-info">
+                <span className="wifi-icon">📶</span>
+                <span>Connected</span>
+              </div>
+            </div>
+          </>
+        );
+      case 'laptop':
+        return (
+          <>
+            <div className="speaker-title">Laptop</div>
+            <div className="laptop-status">
+              <div className="battery-info">
+                <span className="battery-icon">🔋</span>
+                <span>Battery: 45%</span>
+              </div>
+              <div className="status-info">
+                <span className="status-icon">💻</span>
+                <span>Active</span>
+              </div>
+            </div>
+          </>
+        );
+      case 'speaker':
+        return (
+          <>
+            <div className="speaker-title">TiDot</div>
+            <div className="speaker-controls">
+              <button className="control-button">⏮</button>
+              <button 
+                className="control-button play"
+                onClick={handlePlayToggle}
+              >
+                {isPlaying ? '⏸' : '▶'}
+              </button>
+              <button className="control-button">⏭</button>
+            </div>
+            <div className="speaker-info">
+              <span className="speaker-icon">🔊</span>
+              <span className="speaker-name">Speaker</span>
+              <span className="speaker-status">{isPlaying ? 'PLAYING' : 'PAUSED'}</span>
+            </div>
+          </>
+        );
+      case 'tv':
+        return (
+          <>
+            <div className="speaker-title">Smart TV</div>
+            <div className="tv-controls">
+              <button className="control-button">📺</button>
+              <button className="control-button play">⏯</button>
+              <button className="control-button">🔍</button>
+            </div>
+            <div className="tv-info">
+              <span className="tv-icon">📺</span>
+              <span className="tv-name">Living Room</span>
+              <span className="tv-status">ON</span>
+            </div>
+          </>
+        );
+      default:
+        return (
+          <>
+            <div className="speaker-title">TiDot</div>
+            <div className="speaker-controls">
+              <button className="control-button">⏮</button>
+              <button className="control-button play">▶</button>
+              <button className="control-button">⏭</button>
+            </div>
+            <div className="speaker-info">
+              <span className="speaker-icon">🔊</span>
+              <span className="speaker-name">Speaker</span>
+              <span className="speaker-status">PLAYING</span>
+            </div>
+          </>
+        );
     }
   };
 
@@ -159,25 +321,19 @@ const Sidebar = ({ onMenuItemClick }) => {
       <div className="device-section">
         <div className="device-label">Device</div>
         <div className="device-icons">
-          <div className="device-icon">🌱</div>
-          <div className="device-icon">📱</div>
-          <div className="device-icon">💻</div>
-          <div className="device-icon active">🔊</div>
-          <div className="device-icon">📺</div>
-          <div className="device-icon add">+</div>
+          {devices.map(device => (
+            <div 
+              key={device.id}
+              className={`device-icon ${activeDevice === device.id ? 'active' : ''} ${device.id === 'add' ? 'add' : ''}`}
+              onClick={() => handleDeviceClick(device.id)}
+              style={activeDevice === device.id ? { backgroundColor: device.color } : {}}
+            >
+              {device.icon}
+            </div>
+          ))}
         </div>
-        <div className="speaker-card">
-          <div className="speaker-title">TiDot</div>
-          <div className="speaker-controls">
-            <button className="control-button">⏮</button>
-            <button className="control-button play">▶</button>
-            <button className="control-button">⏭</button>
-          </div>
-          <div className="speaker-info">
-            <span className="speaker-icon">🔊</span>
-            <span className="speaker-name">Speaker</span>
-            <span className="speaker-status">PLAYING</span>
-          </div>
+        <div className="speaker-card" style={getTiDotCardStyle()}>
+          {renderTiDotContent()}
         </div>
       </div>
       
