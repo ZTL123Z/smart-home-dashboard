@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './MainContent.css';
 import DeviceCards from './DeviceCards';
-import { FaChartLine, FaLock, FaThermometerHalf, FaLightbulb, FaHeadset, FaCog, FaInfoCircle, FaExclamationTriangle, FaRegLightbulb, FaRegSun, FaRegMoon, FaShieldAlt, FaToggleOn, FaToggleOff } from 'react-icons/fa';
+import { FaChartLine, FaLock, FaThermometerHalf, FaLightbulb, FaHeadset, FaCog, FaInfoCircle, FaExclamationTriangle, FaRegLightbulb, FaRegSun, FaRegMoon, FaShieldAlt, FaToggleOn, FaToggleOff, FaRegSnowflake, FaFire, FaMagic, FaWind, FaCouch, FaUtensils, FaBed, FaShower } from 'react-icons/fa';
 import ShapeBlur from './ShapeBlur';
 import Orb from './Orb';
 import CircleBackground from './CircleBackground';
@@ -315,9 +315,17 @@ const MainContent = ({ activeSection = 'home', theme = 'white' }) => {
               <h2>Temperature Control</h2>
             </div>
             
-            <div className="temperature-dashboard">
-              <div className="temperature-display">
-                <div className="temp-value">{temperature}°C</div>
+            <div className="temperature-dashboard modern-dashboard">
+              <div className="temperature-display modern-card">
+                <div className="temp-circle-container">
+                  <div className="temp-circle">
+                    <div className="temp-value">{temperature}°C</div>
+                    <div className="temp-status">
+                      {temperature < 20 ? 'Cool' : temperature > 24 ? 'Warm' : 'Comfortable'}
+                    </div>
+                  </div>
+                </div>
+                
                 <div className="temp-controls">
                   <button 
                     className="temp-button decrease" 
@@ -332,7 +340,7 @@ const MainContent = ({ activeSection = 'home', theme = 'white' }) => {
                       max="30" 
                       value={temperature} 
                       onChange={(e) => handleTemperatureChange(parseInt(e.target.value))}
-                      className="slider"
+                      className="slider modern-slider temp-modern-slider"
                     />
                   </div>
                   <button 
@@ -344,80 +352,69 @@ const MainContent = ({ activeSection = 'home', theme = 'white' }) => {
                 </div>
               </div>
               
-              <div className="mode-selection">
+              <div className="mode-selection modern-card">
                 <h3>Mode</h3>
-                <div className="mode-buttons">
+                <div className="mode-buttons temp-mode-buttons">
                   <button 
-                    className={`mode-button ${temperatureMode === 'cool' ? 'active' : ''}`}
+                    className={`temp-mode-button ${temperatureMode === 'cool' ? 'active' : ''}`}
                     onClick={() => handleTemperatureModeChange('cool')}
                   >
-                    Cool
+                    <div className="mode-icon-wrapper temp-icon-wrapper cool-icon">
+                      <FaRegSnowflake className="mode-icon" />
+                      <div className="icon-glow"></div>
+                    </div>
+                    <span>Cool</span>
                   </button>
                   <button 
-                    className={`mode-button ${temperatureMode === 'heat' ? 'active' : ''}`}
+                    className={`temp-mode-button ${temperatureMode === 'heat' ? 'active' : ''}`}
                     onClick={() => handleTemperatureModeChange('heat')}
                   >
-                    Heat
+                    <div className="mode-icon-wrapper temp-icon-wrapper heat-icon">
+                      <FaFire className="mode-icon" />
+                      <div className="icon-glow"></div>
+                    </div>
+                    <span>Heat</span>
                   </button>
                   <button 
-                    className={`mode-button ${temperatureMode === 'auto' ? 'active' : ''}`}
+                    className={`temp-mode-button ${temperatureMode === 'auto' ? 'active' : ''}`}
                     onClick={() => handleTemperatureModeChange('auto')}
                   >
-                    Auto
+                    <div className="mode-icon-wrapper temp-icon-wrapper auto-icon">
+                      <FaMagic className="mode-icon" />
+                      <div className="icon-glow"></div>
+                    </div>
+                    <span>Auto</span>
                   </button>
                   <button 
-                    className={`mode-button ${temperatureMode === 'fan' ? 'active' : ''}`}
+                    className={`temp-mode-button ${temperatureMode === 'fan' ? 'active' : ''}`}
                     onClick={() => handleTemperatureModeChange('fan')}
                   >
-                    Fan
+                    <div className="mode-icon-wrapper temp-icon-wrapper fan-icon">
+                      <FaWind className="mode-icon" />
+                      <div className="icon-glow"></div>
+                    </div>
+                    <span>Fan</span>
                   </button>
                 </div>
               </div>
               
-              <div className="temperature-stats">
-                <div className="stat-card">
-                  <FaThermometerHalf className="stat-icon" />
-                  <div className="stat-info">
-                    <h3>Current</h3>
-                    <p>22.5°C</p>
-                    <div className="stat-progress">
-                      <div className="progress-bar" style={{ width: '70%' }}></div>
-                    </div>
-                  </div>
-                </div>
-                <div className="stat-card">
-                  <FaChartLine className="stat-icon" />
-                  <div className="stat-info">
-                    <h3>Energy Usage</h3>
-                    <p>1.2 kWh</p>
-                    <div className="stat-progress">
-                      <div className="progress-bar" style={{ width: '40%' }}></div>
-                    </div>
-                    <p className="stat-comparison">15% less than yesterday</p>
-                  </div>
-                </div>
-              </div>
-              
-              <div className="room-temperatures">
-                <h3>Room Temperatures</h3>
-                <div className="room-list">
-                  <div className="room-item">
-                    <span className="room-name">Living Room</span>
-                    <span className="room-temp">22.5°C</span>
-                  </div>
-                  <div className="room-item">
-                    <span className="room-name">Kitchen</span>
-                    <span className="room-temp">23.1°C</span>
-                  </div>
-                  <div className="room-item">
-                    <span className="room-name">Bedroom</span>
-                    <span className="room-temp">21.8°C</span>
-                  </div>
-                  <div className="room-item">
-                    <span className="room-name">Bathroom</span>
-                    <span className="room-temp">24.2°C</span>
-                  </div>
-                </div>
+              <div className="temperature-stats modern-stats">
+                <StatCard 
+                  title="Current"
+                  value="22.5°C"
+                  icon="thermometer"
+                  progressValue={70}
+                  color="#4285f4"
+                />
+                <StatCard 
+                  title="Energy Usage"
+                  value="1.2 kWh"
+                  icon="chart"
+                  progressValue={40}
+                  comparisonText="15% less than yesterday"
+                  color="#4caf50"
+                  onClick={handleEnergyModalToggle}
+                />
               </div>
             </div>
           </div>

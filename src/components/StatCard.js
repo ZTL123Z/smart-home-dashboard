@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './StatCard.css';
-import { FaChartLine, FaLightbulb, FaInfoCircle } from 'react-icons/fa';
+import { FaChartLine, FaLightbulb, FaInfoCircle, FaThermometerHalf } from 'react-icons/fa';
 
 const StatCard = ({ 
   title, 
@@ -32,6 +32,8 @@ const StatCard = ({
         return <FaChartLine className="stat-icon" />;
       case 'info':
         return <FaInfoCircle className="stat-icon" />;
+      case 'thermometer':
+        return <FaThermometerHalf className="stat-icon thermometer" />;
       default:
         return <FaChartLine className="stat-icon" />;
     }
