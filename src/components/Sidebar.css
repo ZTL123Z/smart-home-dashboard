@@ -308,9 +308,31 @@
 }
 
 .view-all {
-  font-size: 12px;
-  color: #4285f4;
+  font-size: 14px;
+  color: var(--app-primary-color, #4285f4);
   cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  padding: 4px 8px;
+  border-radius: 4px;
+}
+
+.view-all:hover {
+  background-color: rgba(66, 133, 244, 0.1);
+  transform: translateX(2px);
+}
+
+.view-all:active {
+  transform: translateX(0);
+}
+
+.dark-theme .view-all {
+  color: var(--app-primary-color, #4285f4);
+}
+
+.dark-theme .view-all:hover {
+  background-color: rgba(66, 133, 244, 0.2);
 }
 
 .setting-label {

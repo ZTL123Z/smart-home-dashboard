@@ -3,6 +3,7 @@ import './Sidebar.css';
 import { FaHome, FaShieldAlt, FaThermometerHalf, FaLightbulb, FaHeadset, FaCog, FaChartLine, FaLock, FaInfoCircle, FaExclamationTriangle, FaRegLightbulb, FaRegSun, FaRegMoon } from 'react-icons/fa';
 import UserAvatar from './UserAvatar';
 import ColorPicker from './ColorPicker';
+import SettingsDetail from './SettingsDetail';
 
 const Sidebar = ({ onMenuItemClick, onThemeChange, onColorChange, currentTheme, currentColor }) => {
   const [homeName, setHomeName] = useState("Martine's Home");
@@ -13,6 +14,7 @@ const Sidebar = ({ onMenuItemClick, onThemeChange, onColorChange, currentTheme, 
   const [activeDevice, setActiveDevice] = useState('speaker'); // 默认选中扬声器设备
   const [isPlaying, setIsPlaying] = useState(true); // 播放状态
   const [showColorPicker, setShowColorPicker] = useState(false); // 颜色选择器显示状态
+  const [showSettingsDetail, setShowSettingsDetail] = useState(false); // 设置详情显示状态
   
   // 预定义的颜色选项
   const colorOptions = [
@@ -248,6 +250,16 @@ const Sidebar = ({ onMenuItemClick, onThemeChange, onColorChange, currentTheme, 
         );
     }
   };
+  
+  // 处理打开设置详情
+  const handleOpenSettingsDetail = () => {
+    setShowSettingsDetail(true);
+  };
+  
+  // 处理关闭设置详情
+  const handleCloseSettingsDetail = () => {
+    setShowSettingsDetail(false);
+  };
 
   return (
     <div className={`sidebar ${currentTheme === 'dark' ? 'dark-theme' : ''}`}>
@@ -381,7 +393,7 @@ const Sidebar = ({ onMenuItemClick, onThemeChange, onColorChange, currentTheme, 
       <div className="app-settings">
         <div className="settings-header">
           <span>App Settings</span>
-          <span className="view-all">View all &gt;</span>
+          <span className="view-all" onClick={handleOpenSettingsDetail}>View all &gt;</span>
         </div>
         <div className="theme-settings">
           <div className="setting-label">Color theme</div>
@@ -425,6 +437,16 @@ const Sidebar = ({ onMenuItemClick, onThemeChange, onColorChange, currentTheme, 
         onClose={handleCloseColorEditor}
         onColorSelect={handleCustomColorSelect}
         initialColor={currentColor}
+      />
+      
+      {/* 设置详情 */}
+      <SettingsDetail 
+        isOpen={showSettingsDetail}
+        onClose={handleCloseSettingsDetail}
+        onThemeChange={onThemeChange}
+        onColorChange={onColorChange}
+        currentTheme={currentTheme}
+        currentColor={currentColor}
       />
     </div>
   );
