@@ -336,7 +336,6 @@ const Sidebar = ({ onMenuItemClick, onThemeChange, onColorChange, currentTheme, 
         >
           <FaShieldAlt className="menu-icon" />
           <span>Security</span>
-          <span className="pro-badge">PRO+</span>
         </div>
         <div 
           className={`menu-item ${activeMenuItem === 'temperature' ? 'active' : ''}`}
@@ -351,7 +350,6 @@ const Sidebar = ({ onMenuItemClick, onThemeChange, onColorChange, currentTheme, 
         >
           <FaLightbulb className="menu-icon" />
           <span>Lighting</span>
-          <span className="percentage">60%</span>
         </div>
         <div 
           className={`menu-item ${activeMenuItem === 'support' ? 'active' : ''}`}
