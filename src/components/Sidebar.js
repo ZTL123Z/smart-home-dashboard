@@ -1,15 +1,47 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Sidebar.css';
 import { FaHome, FaShieldAlt, FaThermometerHalf, FaLightbulb, FaHeadset, FaCog } from 'react-icons/fa';
 import UserAvatar from './UserAvatar';
 
 const Sidebar = () => {
+  const [homeName, setHomeName] = useState("Martine's Home");
+  const [isEditing, setIsEditing] = useState(false);
+  
+  // 处理编辑图标点击
+  const handleEditClick = () => {
+    setIsEditing(true);
+  };
+  
+  // 处理名称输入变化
+  const handleNameChange = (e) => {
+    setHomeName(e.target.value);
+  };
+  
+  // 处理名称编辑完成
+  const handleNameSubmit = (e) => {
+    if (e.key === 'Enter' || e.type === 'blur') {
+      setIsEditing(false);
+    }
+  };
+
   return (
     <div className="sidebar">
       <div className="sidebar-header">
         <div className="home-title">
-          <h2>Martine's Home</h2>
-          <span className="edit-icon">✏️</span>
+          {isEditing ? (
+            <input
+              type="text"
+              value={homeName}
+              onChange={handleNameChange}
+              onKeyDown={handleNameSubmit}
+              onBlur={handleNameSubmit}
+              className="home-title-input"
+              autoFocus
+            />
+          ) : (
+            <h2>{homeName}</h2>
+          )}
+          <span className="edit-icon" onClick={handleEditClick}>✏️</span>
         </div>
         <div className="users-container">
           <UserAvatar src="/avatars/image.png" />
@@ -25,6 +57,7 @@ const Sidebar = () => {
         </div>
       </div>
       
+      {/* 侧边栏菜单 */}
       <div className="sidebar-menu">
         <div className="menu-item active">
           <FaHome className="menu-icon" />
@@ -54,6 +87,7 @@ const Sidebar = () => {
         </div>
       </div>
       
+      {/* 设备部分 */}
       <div className="device-section">
         <div className="device-label">Device</div>
         <div className="device-icons">
@@ -79,10 +113,11 @@ const Sidebar = () => {
         </div>
       </div>
       
+      {/* 应用设置 */}
       <div className="app-settings">
         <div className="settings-header">
           <span>App Settings</span>
-          <span className="view-all">View all ></span>
+          <span className="view-all">View all &gt;</span>
         </div>
         <div className="theme-settings">
           <div className="setting-label">Color theme</div>

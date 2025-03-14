@@ -39,11 +39,32 @@
   font-size: 22px;
   font-weight: 600;
   color: #333;
+  margin: 0;
+}
+
+.home-title-input {
+  font-size: 22px;
+  font-weight: 600;
+  color: #333;
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid #4285f4;
+  outline: none;
+  padding: 0 0 4px 0;
+  width: 80%;
+  margin: 0;
+  transition: all 0.3s ease;
 }
 
 .edit-icon {
   cursor: pointer;
   color: #999;
+  transition: all 0.3s ease;
+}
+
+.edit-icon:hover {
+  color: #4285f4;
+  transform: scale(1.1);
 }
 
 .users-container {
