@@ -350,8 +350,11 @@ const MainContent = ({ activeSection = 'home', theme = 'white' }) => {
               <h2>Lighting Control</h2>
             </div>
             
-            <div className="lighting-dashboard">
-              <div className="brightness-control">
+            <div className="lighting-dashboard modern-dashboard">
+              <div className="brightness-control modern-card">
+                <div className="icon-container light-icon-container">
+                  <FaLightbulb className="control-icon" />
+                </div>
                 <h3>Brightness: {lightBrightness}%</h3>
                 <div className="brightness-slider">
                   <input 
@@ -360,41 +363,43 @@ const MainContent = ({ activeSection = 'home', theme = 'white' }) => {
                     max="100" 
                     value={lightBrightness} 
                     onChange={(e) => handleBrightnessChange(parseInt(e.target.value))}
-                    className="slider"
+                    className="slider modern-slider"
                   />
                 </div>
               </div>
               
-              <div className="light-modes">
+              <div className="light-modes modern-card">
                 <h3>Mode</h3>
-                <div className="mode-buttons">
+                <div className="mode-buttons modern-buttons">
                   <button 
-                    className={`mode-button ${lightMode === 'day' ? 'active' : ''}`}
+                    className={`mode-button modern-mode-button ${lightMode === 'day' ? 'active' : ''}`}
                     onClick={() => handleLightModeChange('day')}
                   >
-                    <FaRegSun />
+                    <FaRegSun className="mode-icon" />
                     <span>Day</span>
                   </button>
                   <button 
-                    className={`mode-button ${lightMode === 'evening' ? 'active' : ''}`}
+                    className={`mode-button modern-mode-button ${lightMode === 'evening' ? 'active' : ''}`}
                     onClick={() => handleLightModeChange('evening')}
                   >
-                    <FaRegLightbulb />
+                    <FaRegLightbulb className="mode-icon" />
                     <span>Evening</span>
                   </button>
                   <button 
-                    className={`mode-button ${lightMode === 'night' ? 'active' : ''}`}
+                    className={`mode-button modern-mode-button ${lightMode === 'night' ? 'active' : ''}`}
                     onClick={() => handleLightModeChange('night')}
                   >
-                    <FaRegMoon />
+                    <FaRegMoon className="mode-icon" />
                     <span>Night</span>
                   </button>
                 </div>
               </div>
               
-              <div className="lighting-stats">
-                <div className="stat-card">
-                  <FaLightbulb className="stat-icon" />
+              <div className="lighting-stats modern-stats">
+                <div className="stat-card modern-stat-card">
+                  <div className="stat-icon-container">
+                    <FaLightbulb className="stat-icon" />
+                  </div>
                   <div className="stat-info">
                     <h3>Active Lights</h3>
                     <p>8 of 12</p>
@@ -403,8 +408,10 @@ const MainContent = ({ activeSection = 'home', theme = 'white' }) => {
                     </div>
                   </div>
                 </div>
-                <div className="stat-card">
-                  <FaChartLine className="stat-icon" />
+                <div className="stat-card modern-stat-card">
+                  <div className="stat-icon-container">
+                    <FaChartLine className="stat-icon" />
+                  </div>
                   <div className="stat-info">
                     <h3>Energy Usage</h3>
                     <p>0.8 kWh</p>
@@ -412,44 +419,6 @@ const MainContent = ({ activeSection = 'home', theme = 'white' }) => {
                       <div className="progress-bar" style={{ width: '30%' }}></div>
                     </div>
                     <p className="stat-comparison">10% less than yesterday</p>
-                  </div>
-                </div>
-              </div>
-              
-              <div className="room-lights">
-                <h3>Room Lights</h3>
-                <div className="room-list">
-                  <div className="room-item">
-                    <span className="room-name">Living Room</span>
-                    <div className="light-toggle">
-                      <div className="toggle-switch active">
-                        <div className="toggle-button"></div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="room-item">
-                    <span className="room-name">Kitchen</span>
-                    <div className="light-toggle">
-                      <div className="toggle-switch active">
-                        <div className="toggle-button"></div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="room-item">
-                    <span className="room-name">Bedroom</span>
-                    <div className="light-toggle">
-                      <div className="toggle-switch">
-                        <div className="toggle-button"></div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="room-item">
-                    <span className="room-name">Bathroom</span>
-                    <div className="light-toggle">
-                      <div className="toggle-switch">
-                        <div className="toggle-button"></div>
-                      </div>
-                    </div>
                   </div>
                 </div>
               </div>
@@ -466,9 +435,11 @@ const MainContent = ({ activeSection = 'home', theme = 'white' }) => {
             
             <div className="support-dashboard centered-support">
               <div className="support-center-card">
-                <FaInfoCircle className="support-icon" />
+                <div className="icon-container">
+                  <FaInfoCircle className="support-icon" />
+                </div>
                 <h3>Help Center</h3>
-                <p>Browse our knowledge base</p>
+                <p>Browse our knowledge base and find solutions to your questions</p>
                 <a 
                   href="https://www.baidu.com" 
                   target="_blank" 
