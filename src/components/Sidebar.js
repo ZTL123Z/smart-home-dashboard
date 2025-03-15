@@ -274,9 +274,6 @@ const Sidebar = ({ onMenuItemClick, onThemeChange, onColorChange, currentTheme, 
           <UserAvatar src="/avatars/image3.png" />
           <span className="more-users">+2</span>
         </div>
-        <div className="access-control">
-          <button className="invite-button">+ Invite</button>
-        </div>
       </div>
       
       {/* 侧边栏菜单 */}

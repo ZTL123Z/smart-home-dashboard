@@ -97,30 +97,43 @@
   margin-left: 5px;
 }
 
-.access-control {
-  display: flex;
-  justify-content: flex-end;
-  margin-top: 15px;
-}
-
 .dropdown-icon {
   margin-left: 5px;
   font-size: 10px;
 }
 
 .invite-button {
-  background-color: #4285f4;
-  color: white;
-  border: none;
+  background-color: #f5f7fa;
+  color: #666;
+  border: 1px solid #e0e0e0;
   border-radius: 20px;
-  padding: 8px 16px;
-  font-size: 14px;
+  padding: 6px 16px;
+  font-size: 13px;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 4px;
 }
 
 .invite-button:hover {
-  background-color: #3367d6;
+  background-color: #f0f4f8;
+  color: #4285f4;
+  border-color: #4285f4;
+  transform: translateY(-1px);
+}
+
+/* Dark theme styles */
+.dark-theme .invite-button {
+  background-color: #2d2d2d;
+  color: #aaa;
+  border-color: #444;
+}
+
+.dark-theme .invite-button:hover {
+  background-color: #383838;
+  color: #4285f4;
+  border-color: #4285f4;
 }
 
 .sidebar-menu {
