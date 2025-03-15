@@ -52,7 +52,6 @@ const TiltedCard = ({ children }) => {
 
 const MainContent = ({ activeSection = 'home', theme = 'white' }) => {
   // 状态管理
-  const [isEditing, setIsEditing] = useState(false);
   const [isPowerOn, setIsPowerOn] = useState(true);
   const [isSearching, setIsSearching] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
@@ -115,16 +114,6 @@ const MainContent = ({ activeSection = 'home', theme = 'white' }) => {
   
   // 计算活跃灯光数量
   const activeLightsCount = lights.filter(light => light.isOn).length;
-  
-  // 处理编辑模式切换
-  const handleEditToggle = () => {
-    setIsEditing(!isEditing);
-  };
-  
-  // 处理电源开关切换
-  const handlePowerToggle = () => {
-    setIsPowerOn(!isPowerOn);
-  };
   
   // 处理搜索框显示切换
   const handleSearchToggle = () => {
@@ -694,41 +683,19 @@ const MainContent = ({ activeSection = 'home', theme = 'white' }) => {
     <div className={`main-content ${theme === 'dark' ? 'dark-theme' : ''}`}>
       <div className="header">
         <div className="edit-section">
-          <span 
-            className={`edit-text ${isEditing ? 'active' : ''}`}
-            onClick={handleEditToggle}
-          >
-            EDIT
-          </span>
           <span className="update-time">Updated 4 min ago</span>
         </div>
         <div className="search-section">
-          {isSearching ? (
-            <form onSubmit={handleSearchSubmit} className="search-form">
-              <input
-                id="search-input"
-                type="text"
-                value={searchQuery}
-                onChange={handleSearchChange}
-                placeholder="Search..."
-                className="search-input"
-              />
-              <button type="button" className="search-close" onClick={handleSearchToggle}>✖</button>
-            </form>
-          ) : (
-            <>
-              <div className="tablet-name">
-                <span className="tablet-icon"></span>
-                <span>Tablet_</span>
-              </div>
-              <div className="search-box" onClick={handleSearchToggle}>
-                <span className="search-icon"></span>
-              </div>
-              <div className="voice-button" onClick={() => alert('Voice command activated')}>
-                <span className="mic-icon"></span>
-              </div>
-            </>
-          )}
+          <div className="tablet-name">
+            <span className="tablet-icon"></span>
+            <span>Tablet_</span>
+          </div>
+          <div className="search-box" onClick={handleSearchToggle}>
+            <span className="search-icon"></span>
+          </div>
+          <div className="voice-button" onClick={() => alert('Voice command activated')}>
+            <span className="mic-icon"></span>
+          </div>
         </div>
         <div className="controls-section">
           <div className="notification" onClick={handleNotificationsToggle}>
@@ -754,7 +721,7 @@ const MainContent = ({ activeSection = 'home', theme = 'white' }) => {
           </div>
           <div 
             className={`power-toggle ${isPowerOn ? 'active' : ''}`}
-            onClick={handlePowerToggle}
+            onClick={() => setIsPowerOn(!isPowerOn)}
           >
             <div className="toggle-button"></div>
           </div>

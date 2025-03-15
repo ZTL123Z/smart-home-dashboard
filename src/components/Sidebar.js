@@ -9,12 +9,10 @@ const Sidebar = ({ onMenuItemClick, onThemeChange, onColorChange, currentTheme, 
   const [homeName, setHomeName] = useState("Martine's Home");
   const [isEditing, setIsEditing] = useState(false);
   const [activeMenuItem, setActiveMenuItem] = useState('home');
-  const [accessLevel, setAccessLevel] = useState("Limited access");
-  const [showAccessDropdown, setShowAccessDropdown] = useState(false);
-  const [activeDevice, setActiveDevice] = useState('speaker'); // 默认选中扬声器设备
-  const [isPlaying, setIsPlaying] = useState(true); // 播放状态
-  const [showColorPicker, setShowColorPicker] = useState(false); // 颜色选择器显示状态
-  const [showSettingsDetail, setShowSettingsDetail] = useState(false); // 设置详情显示状态
+  const [activeDevice, setActiveDevice] = useState('speaker');
+  const [isPlaying, setIsPlaying] = useState(true);
+  const [showColorPicker, setShowColorPicker] = useState(false);
+  const [showSettingsDetail, setShowSettingsDetail] = useState(false);
   
   // 预定义的颜色选项
   const colorOptions = [
@@ -48,17 +46,6 @@ const Sidebar = ({ onMenuItemClick, onThemeChange, onColorChange, currentTheme, 
     if (e.key === 'Enter' || e.type === 'blur') {
       setIsEditing(false);
     }
-  };
-  
-  // 处理访问级别切换
-  const handleAccessToggle = () => {
-    setShowAccessDropdown(!showAccessDropdown);
-  };
-  
-  // 处理选择访问级别
-  const handleAccessSelect = (level) => {
-    setAccessLevel(level);
-    setShowAccessDropdown(false);
   };
   
   // 处理菜单项点击
@@ -288,35 +275,6 @@ const Sidebar = ({ onMenuItemClick, onThemeChange, onColorChange, currentTheme, 
           <span className="more-users">+2</span>
         </div>
         <div className="access-control">
-          <div className="access-level" onClick={handleAccessToggle}>
-            <span>{accessLevel}</span>
-            <span className="dropdown-icon">▼</span>
-          </div>
-          {showAccessDropdown && (
-            <div className="access-dropdown">
-              <div 
-                className={`access-option ${accessLevel === "Full access" ? "active" : ""}`}
-                onClick={() => handleAccessSelect("Full access")}
-              >
-                <span>Full access</span>
-                <span className="access-info">Unlimited users</span>
-              </div>
-              <div 
-                className={`access-option ${accessLevel === "Limited access" ? "active" : ""}`}
-                onClick={() => handleAccessSelect("Limited access")}
-              >
-                <span>Limited access</span>
-                <span className="access-info">Max 6 users</span>
-              </div>
-              <div 
-                className={`access-option ${accessLevel === "Basic access" ? "active" : ""}`}
-                onClick={() => handleAccessSelect("Basic access")}
-              >
-                <span>Basic access</span>
-                <span className="access-info">Max 3 users</span>
-              </div>
-            </div>
-          )}
           <button className="invite-button">+ Invite</button>
         </div>
       </div>
