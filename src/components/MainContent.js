@@ -68,15 +68,6 @@ const MainContent = ({ activeSection = 'home', theme = 'white' }) => {
   const [lightBrightness, setLightBrightness] = useState(60);
   const [lightMode, setLightMode] = useState('day');
   
-  // 安全系统状态
-  const [securityEnabled, setSecurityEnabled] = useState(true);
-  const [securityLevel, setSecurityLevel] = useState('high');
-  const [securityAlerts, setSecurityAlerts] = useState([
-    { id: 1, message: "Front door opened", time: "Today, 14:32", level: "info" },
-    { id: 2, message: "Motion detected in backyard", time: "Today, 12:15", level: "warning" },
-    { id: 3, message: "Window sensor triggered", time: "Yesterday, 23:45", level: "alert" }
-  ]);
-  
   // 房间状态
   const [activeRoom, setActiveRoom] = useState(0);
   
@@ -168,16 +159,6 @@ const MainContent = ({ activeSection = 'home', theme = 'white' }) => {
     setLightMode(mode);
   };
   
-  // 处理安全系统开关
-  const handleSecurityToggle = () => {
-    setSecurityEnabled(!securityEnabled);
-  };
-  
-  // 处理安全级别切换
-  const handleSecurityLevelChange = (level) => {
-    setSecurityLevel(level);
-  };
-  
   // 处理房间切换
   const handleRoomChange = (roomIndex) => {
     setActiveRoom(roomIndex);
@@ -241,112 +222,6 @@ const MainContent = ({ activeSection = 'home', theme = 'white' }) => {
           <div className="security-content">
             <div className="section-header">
               <h2>Security</h2>
-              <div className="security-toggle">
-                <span>{securityEnabled ? 'Enabled' : 'Disabled'}</span>
-                <div 
-                  className={`toggle-switch ${securityEnabled ? 'active' : ''}`}
-                  onClick={handleSecurityToggle}
-                >
-                  <div className="toggle-button"></div>
-                </div>
-              </div>
-            </div>
-            
-            <div className="security-dashboard">
-              <div className="security-stats">
-                <div className="stat-card">
-                  <FaShieldAlt className="stat-icon" />
-                  <div className="stat-info">
-                    <h3>System Status</h3>
-                    <p className={securityEnabled ? 'status-active' : 'status-inactive'}>
-                      {securityEnabled ? 'Active' : 'Inactive'}
-                    </p>
-                  </div>
-                </div>
-                <div className="stat-card">
-                  <FaLock className="stat-icon" />
-                  <div className="stat-info">
-                    <h3>Doors</h3>
-                    <p className="status-active">All Locked</p>
-                  </div>
-                </div>
-                <div className="stat-card">
-                  <FaInfoCircle className="stat-icon" />
-                  <div className="stat-info">
-                    <h3>Alerts</h3>
-                    <p>{securityAlerts.length} new alerts</p>
-                  </div>
-                </div>
-              </div>
-              
-              <div className="security-level">
-                <h3>Security Level</h3>
-                <div className="level-buttons">
-                  <button 
-                    className={`level-button ${securityLevel === 'low' ? 'active' : ''}`}
-                    onClick={() => handleSecurityLevelChange('low')}
-                  >
-                    Low
-                  </button>
-                  <button 
-                    className={`level-button ${securityLevel === 'medium' ? 'active' : ''}`}
-                    onClick={() => handleSecurityLevelChange('medium')}
-                  >
-                    Medium
-                  </button>
-                  <button 
-                    className={`level-button ${securityLevel === 'high' ? 'active' : ''}`}
-                    onClick={() => handleSecurityLevelChange('high')}
-                  >
-                    High
-                  </button>
-                </div>
-              </div>
-              
-              <div className="security-cameras">
-                <h3>Cameras</h3>
-                <div className="camera-grid">
-                  <div className="camera-feed">
-                    <div className="camera-placeholder">Front Door</div>
-                  </div>
-                  <div className="camera-feed">
-                    <div className="camera-placeholder">Backyard</div>
-                  </div>
-                  <div className="camera-feed">
-                    <div className="camera-placeholder">Garage</div>
-                  </div>
-                  <div className="camera-feed">
-                    <div className="camera-placeholder">Living Room</div>
-                  </div>
-                </div>
-              </div>
-              
-              <div className="security-alerts">
-                <h3>Recent Alerts</h3>
-                <div className="alerts-list">
-                  {securityAlerts.map(alert => (
-                    <div key={alert.id} className={`alert-item ${alert.level}`}>
-                      <div className="alert-icon">
-                        {alert.level === 'info' && <FaInfoCircle />}
-                        {alert.level === 'warning' && <FaExclamationTriangle />}
-                        {alert.level === 'alert' && <FaExclamationTriangle />}
-                      </div>
-                      <div className="alert-content">
-                        <p className="alert-message">{alert.message}</p>
-                        <p className="alert-time">{alert.time}</p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-              
-              <div className="upgrade-banner">
-                <div className="upgrade-content">
-                  <h3>Upgrade to PRO+</h3>
-                  <p>Get advanced security features, 24/7 monitoring and instant alerts</p>
-                </div>
-                <button className="upgrade-button">Upgrade</button>
-              </div>
             </div>
           </div>
         );
