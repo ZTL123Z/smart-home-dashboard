@@ -2283,29 +2283,35 @@
 .menu-item {
   display: flex;
   align-items: center;
-  gap: 15px;
-  padding: 12px 20px;
+  gap: 12px;
+  padding: 8px 15px;
   border-radius: 12px;
   cursor: pointer;
   transition: all 0.3s ease;
   position: relative;
   overflow: hidden;
-  margin-bottom: 8px;
+  margin-bottom: 2px;
   background-color: transparent;
-  box-shadow: 0 0 0 rgba(0, 0, 0, 0);
 }
 
 .menu-item:hover {
   background-color: rgba(240, 240, 240, 0.6);
-  transform: translateX(5px);
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
 }
 
 .menu-item.active {
-  background-color: rgba(240, 240, 240, 0.8);
-  background-image: linear-gradient(to right, rgba(240, 240, 240, 0.8), rgba(240, 240, 240, 0.4));
-  font-weight: 500;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  background-color: #4285f4;
+  color: white;
+  position: relative;
+}
+
+.menu-item.active::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 4px;
+  background-color: #1a73e8;
 }
 
 .menu-item .menu-icon {
@@ -2316,11 +2322,10 @@
 
 .menu-item:hover .menu-icon {
   color: #4285f4;
-  transform: scale(1.1);
 }
 
 .menu-item.active .menu-icon {
-  color: #4285f4;
+  color: white;
 }
 
 .menu-item span {
@@ -2331,82 +2336,25 @@
 
 .menu-item:hover span {
   color: #4285f4;
-  text-shadow: 0 0 0.5px rgba(66, 133, 244, 0.3);
 }
 
 .menu-item.active span {
-  color: #4285f4;
-  text-shadow: 0 0 0.5px rgba(66, 133, 244, 0.5);
-}
-
-.menu-item::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 0;
-  height: 100%;
-  width: 0;
-  background-color: rgba(66, 133, 244, 0.1);
-  transition: width 0.3s ease;
-}
-
-.menu-item:hover::before {
-  width: 5px;
-}
-
-.menu-item.active::before {
-  width: 5px;
-  background-color: #4285f4;
-}
-
-.menu-item.support {
-  margin-top: 10px;
+  color: white;
 }
 
 .menu-item.support .menu-icon {
   color: #4CAF50;
 }
 
-.menu-item.support:hover .menu-icon,
-.menu-item.support.active .menu-icon {
+.menu-item.support:hover .menu-icon {
   color: #2E7D32;
-}
-
-.menu-item.support:hover span,
-.menu-item.support.active span {
-  color: #2E7D32;
-}
-
-.menu-item.support::before {
-  background-color: rgba(76, 175, 80, 0.1);
-}
-
-.menu-item.support.active::before {
-  background-color: #4CAF50;
-}
-
-.menu-item.support:hover {
-  background-color: rgba(76, 175, 80, 0.1);
 }
 
 .menu-item.support.active {
-  background-color: rgba(76, 175, 80, 0.2);
-  background-image: linear-gradient(to right, rgba(76, 175, 80, 0.2), rgba(76, 175, 80, 0.05));
+  background-color: #4CAF50;
 }
 
-.menu-item.clicked {
-  animation: pulse 0.6s ease;
-}
-
-@keyframes pulse {
-  0% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(0.98);
-    background-color: rgba(66, 133, 244, 0.15);
-  }
-  100% {
-    transform: scale(1);
-  }
+.menu-item.support.active .menu-icon,
+.menu-item.support.active span {
+  color: white;
 }
