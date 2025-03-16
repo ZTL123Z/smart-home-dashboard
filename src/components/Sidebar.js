@@ -9,6 +9,7 @@ const Sidebar = ({ onMenuItemClick, onThemeChange, onColorChange, currentTheme, 
   const [homeName, setHomeName] = useState("Martine's Home");
   const [isEditing, setIsEditing] = useState(false);
   const [activeMenuItem, setActiveMenuItem] = useState('home');
+  const [clickedItem, setClickedItem] = useState(null);
   const [activeDevice, setActiveDevice] = useState('speaker');
   const [isPlaying, setIsPlaying] = useState(true);
   const [showColorPicker, setShowColorPicker] = useState(false);
@@ -49,8 +50,28 @@ const Sidebar = ({ onMenuItemClick, onThemeChange, onColorChange, currentTheme, 
   };
   
   // 处理菜单项点击
-  const handleMenuItemClick = (menuItem) => {
+  const handleMenuItemClick = (menuItem, e) => {
     setActiveMenuItem(menuItem);
+    setClickedItem(menuItem);
+    
+    // Create ripple effect
+    const button = e.currentTarget;
+    const rect = button.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    
+    const ripple = document.createElement('span');
+    ripple.className = 'ripple';
+    ripple.style.left = `${x}px`;
+    ripple.style.top = `${y}px`;
+    
+    button.appendChild(ripple);
+    
+    setTimeout(() => {
+      ripple.remove();
+      setClickedItem(null);
+    }, 600);
+    
     // 通知父组件更新主内容区域
     if (onMenuItemClick) {
       onMenuItemClick(menuItem);
@@ -58,7 +79,7 @@ const Sidebar = ({ onMenuItemClick, onThemeChange, onColorChange, currentTheme, 
   };
   
   // 处理设备点击
-  const handleDeviceClick = (deviceId) => {
+  const handleDeviceClick = (deviceId, e) => {
     if (deviceId === 'add') {
       alert('Add new device functionality would open here');
       return;
@@ -279,36 +300,36 @@ const Sidebar = ({ onMenuItemClick, onThemeChange, onColorChange, currentTheme, 
       {/* 侧边栏菜单 */}
       <div className="sidebar-menu">
         <div 
-          className={`menu-item ${activeMenuItem === 'home' ? 'active' : ''}`}
-          onClick={() => handleMenuItemClick('home')}
+          className={`menu-item ${activeMenuItem === 'home' ? 'active' : ''} ${clickedItem === 'home' ? 'clicked' : ''}`}
+          onClick={(e) => handleMenuItemClick('home', e)}
         >
           <FaHome className="menu-icon" />
           <span>Home</span>
         </div>
         <div 
-          className={`menu-item ${activeMenuItem === 'security' ? 'active' : ''}`}
-          onClick={() => handleMenuItemClick('security')}
+          className={`menu-item ${activeMenuItem === 'security' ? 'active' : ''} ${clickedItem === 'security' ? 'clicked' : ''}`}
+          onClick={(e) => handleMenuItemClick('security', e)}
         >
           <FaShieldAlt className="menu-icon" />
           <span>Security</span>
         </div>
         <div 
-          className={`menu-item ${activeMenuItem === 'temperature' ? 'active' : ''}`}
-          onClick={() => handleMenuItemClick('temperature')}
+          className={`menu-item ${activeMenuItem === 'temperature' ? 'active' : ''} ${clickedItem === 'temperature' ? 'clicked' : ''}`}
+          onClick={(e) => handleMenuItemClick('temperature', e)}
         >
           <FaThermometerHalf className="menu-icon" />
           <span>Temperature</span>
         </div>
         <div 
-          className={`menu-item ${activeMenuItem === 'lighting' ? 'active' : ''}`}
-          onClick={() => handleMenuItemClick('lighting')}
+          className={`menu-item ${activeMenuItem === 'lighting' ? 'active' : ''} ${clickedItem === 'lighting' ? 'clicked' : ''}`}
+          onClick={(e) => handleMenuItemClick('lighting', e)}
         >
           <FaLightbulb className="menu-icon" />
           <span>Lighting</span>
         </div>
         <div 
-          className={`menu-item ${activeMenuItem === 'support' ? 'active' : ''}`}
-          onClick={() => handleMenuItemClick('support')}
+          className={`menu-item support ${activeMenuItem === 'support' ? 'active' : ''} ${clickedItem === 'support' ? 'clicked' : ''}`}
+          onClick={(e) => handleMenuItemClick('support', e)}
         >
           <FaHeadset className="menu-icon" />
           <span>Support</span>
@@ -323,7 +344,7 @@ const Sidebar = ({ onMenuItemClick, onThemeChange, onColorChange, currentTheme, 
             <div 
               key={device.id}
               className={`device-icon ${activeDevice === device.id ? 'active' : ''} ${device.id === 'add' ? 'add' : ''}`}
-              onClick={() => handleDeviceClick(device.id)}
+              onClick={(e) => handleDeviceClick(device.id, e)}
               style={activeDevice === device.id ? { backgroundColor: device.color } : {}}
             >
               {device.icon}
