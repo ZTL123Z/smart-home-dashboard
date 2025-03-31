@@ -241,10 +241,6 @@ const MainContent = ({ activeSection = 'home', theme = 'white' }) => {
       case 'security':
         return (
           <div className="security-content">
-            <div className="section-header">
-              <h2>Security</h2>
-            </div>
-            
             <div className="security-dashboard">
               {/* 主要安全控制 - 改为全宽卡片样式 */}
               <div className="security-controls security-main-card">

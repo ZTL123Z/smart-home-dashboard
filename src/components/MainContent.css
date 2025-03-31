@@ -269,14 +269,39 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
+  padding: 10px 20px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #f5f7fa, #e4e9f2);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  min-height: 60px;
+}
+
+.security-content .section-header {
+  background: linear-gradient(135deg, #e8f5e9, #f1f8e9);
+  border-left: 4px solid #4caf50;
 }
 
 .section-header h2 {
-  font-size: 24px;
+  font-size: 28px;
   font-weight: 600;
-  color: #333;
   margin: 0;
+  background: linear-gradient(90deg, #333, #666);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  position: relative;
+  display: inline-block;
+}
+
+.section-header h2::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  width: 40px;
+  height: 3px;
+  background: linear-gradient(90deg, #4caf50, #8bc34a);
+  border-radius: 3px;
 }
 
 .security-content {
@@ -3057,10 +3082,25 @@
 
 /* 安全级别选择器样式 */
 .security-section-title {
-  font-size: 18px;
+  font-size: 20px;
   font-weight: 600;
-  color: #333;
-  margin-bottom: 15px;
+  margin-bottom: 20px;
+  background: linear-gradient(90deg, #4caf50, #8bc34a);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  position: relative;
+  display: inline-block;
+}
+
+.security-section-title::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  width: 30px;
+  height: 2px;
+  background: linear-gradient(90deg, #4caf50, #8bc34a);
+  border-radius: 2px;
 }
 
 .security-level-container {
