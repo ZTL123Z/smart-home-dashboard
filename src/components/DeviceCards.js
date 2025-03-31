@@ -517,7 +517,9 @@ const DeviceCards = () => {
               className={`toggle-switch ${bluetoothActive ? 'active' : ''}`}
               onClick={handleBluetoothToggle}
             >
-              <div className="toggle-button"></div>
+              <div className="toggle-button">
+                <span></span><span></span><span></span><span></span>
+              </div>
             </div>
           </div>
         </div>
@@ -602,7 +604,9 @@ const DeviceCards = () => {
                 className={`toggle-switch ${lightOn ? 'active' : ''}`}
                 onClick={handleLightToggle}
               >
-                <div className="toggle-button"></div>
+                <div className="toggle-button">
+                  <span></span><span></span><span></span><span></span>
+                </div>
               </div>
               <button 
                 className="brightness-button"
@@ -747,7 +751,9 @@ const DeviceCards = () => {
                 className={`toggle-switch ${thermostatOn ? 'active' : ''}`}
                 onClick={handleThermostatToggle}
               >
-                <div className="toggle-button"></div>
+                <div className="toggle-button">
+                  <span></span><span></span><span></span><span></span>
+                </div>
               </div>
             </div>
           </div>

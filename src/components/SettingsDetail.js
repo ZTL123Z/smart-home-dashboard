@@ -176,7 +176,9 @@ const SettingsDetail = ({ isOpen, onClose, onThemeChange, onColorChange, current
             className={`toggle-switch ${true ? 'active' : ''}`}
             onClick={() => {}}
           >
-            <div className="toggle-button"></div>
+            <div className="toggle-button">
+              <span></span><span></span><span></span><span></span>
+            </div>
           </div>
         </div>
       </div>
@@ -197,7 +199,9 @@ const SettingsDetail = ({ isOpen, onClose, onThemeChange, onColorChange, current
             className={`toggle-switch ${notifications ? 'active' : ''}`}
             onClick={handleNotificationsToggle}
           >
-            <div className="toggle-button"></div>
+            <div className="toggle-button">
+              <span></span><span></span><span></span><span></span>
+            </div>
           </div>
         </div>
         
@@ -210,7 +214,9 @@ const SettingsDetail = ({ isOpen, onClose, onThemeChange, onColorChange, current
             className={`toggle-switch ${soundEffects ? 'active' : ''}`}
             onClick={handleSoundEffectsToggle}
           >
-            <div className="toggle-button"></div>
+            <div className="toggle-button">
+              <span></span><span></span><span></span><span></span>
+            </div>
           </div>
         </div>
         
@@ -255,7 +261,9 @@ const SettingsDetail = ({ isOpen, onClose, onThemeChange, onColorChange, current
             className={`toggle-switch ${false ? 'active' : ''}`}
             onClick={() => {}}
           >
-            <div className="toggle-button"></div>
+            <div className="toggle-button">
+              <span></span><span></span><span></span><span></span>
+            </div>
           </div>
         </div>
         
@@ -310,7 +318,9 @@ const SettingsDetail = ({ isOpen, onClose, onThemeChange, onColorChange, current
             className={`toggle-switch ${autoUpdate ? 'active' : ''}`}
             onClick={handleAutoUpdateToggle}
           >
-            <div className="toggle-button"></div>
+            <div className="toggle-button">
+              <span></span><span></span><span></span><span></span>
+            </div>
           </div>
         </div>
         

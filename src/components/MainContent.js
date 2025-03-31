@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './MainContent.css';
 import DeviceCards from './DeviceCards';
-import { FaChartLine, FaLock, FaThermometerHalf, FaLightbulb, FaHeadset, FaCog, FaInfoCircle, FaExclamationTriangle, FaRegLightbulb, FaRegSun, FaRegMoon, FaShieldAlt, FaToggleOn, FaToggleOff, FaRegSnowflake, FaFire, FaMagic, FaWind, FaCouch, FaUtensils, FaBed, FaShower, FaTint, FaSnowflake, FaRandom } from 'react-icons/fa';
+import { FaChartLine, FaLock, FaThermometerHalf, FaLightbulb, FaHeadset, FaCog, FaInfoCircle, FaExclamationTriangle, FaRegLightbulb, FaRegSun, FaRegMoon, FaShieldAlt, FaToggleOn, FaToggleOff, FaRegSnowflake, FaFire, FaMagic, FaWind, FaCouch, FaUtensils, FaBed, FaShower, FaTint, FaSnowflake, FaRandom, FaHome } from 'react-icons/fa';
 import ShapeBlur from './ShapeBlur';
 import Orb from './Orb';
 import CircleBackground from './CircleBackground';
@@ -70,6 +70,14 @@ const MainContent = ({ activeSection = 'home', theme = 'white' }) => {
   
   // 房间状态
   const [activeRoom, setActiveRoom] = useState(0);
+  
+  // 安全页面状态
+  const [securityLevel, setSecurityLevel] = useState('away');
+  const [securityFeatures, setSecurityFeatures] = useState({
+    motionDetection: true,
+    remoteAccess: true,
+    notifications: true
+  });
   
   // 模态框状态
   const [showEnergyModal, setShowEnergyModal] = useState(false);
@@ -206,6 +214,19 @@ const MainContent = ({ activeSection = 'home', theme = 'white' }) => {
     setMousePosition({ x, y });
   };
   
+  // 处理安全级别切换
+  const handleSecurityLevelChange = (level) => {
+    setSecurityLevel(level);
+  };
+  
+  // 处理安全特性切换
+  const toggleSecurityFeature = (feature) => {
+    setSecurityFeatures(prev => ({
+      ...prev,
+      [feature]: !prev[feature]
+    }));
+  };
+  
   // 渲染主内容区域
   const renderMainContent = () => {
     switch (activeSection) {
@@ -222,6 +243,180 @@ const MainContent = ({ activeSection = 'home', theme = 'white' }) => {
           <div className="security-content">
             <div className="section-header">
               <h2>Security</h2>
+            </div>
+            
+            <div className="security-dashboard">
+              {/* 主要安全控制 - 改为全宽卡片样式 */}
+              <div className="security-controls security-main-card">
+                <div className="security-main-content">
+                  <div className="security-icon-container">
+                    <CircleBackground size="120px" color="#e8f5e9" dashArray="5,5">
+                      <Orb color="#43a047" size="80px" intensity={0.8}>
+                        <FaShieldAlt className="control-icon" />
+                      </Orb>
+                    </CircleBackground>
+                  </div>
+                  <div className="security-info">
+                    <h3>警报系统: <span className={isPowerOn ? "status-active" : "status-inactive"}>{isPowerOn ? "已启动" : "已停用"}</span></h3>
+                    <div className="toggle-container">
+                      <div 
+                        className={`toggle-switch ${isPowerOn ? 'active' : ''}`}
+                        onClick={() => setIsPowerOn(!isPowerOn)}
+                      >
+                        <div className="toggle-button">
+                          <span></span><span></span><span></span><span></span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              {/* 安全级别选择 - 改为图片中的扁平卡片设计 */}
+              <div className="security-section-title">安全级别</div>
+              <div className="security-level-container">
+                <button 
+                  className={`security-level-button ${securityLevel === 'home' ? 'active' : ''}`} 
+                  onClick={() => handleSecurityLevelChange('home')}
+                >
+                  <div className={`level-icon-wrapper ${securityLevel === 'home' ? 'active' : ''}`}>
+                    <FaHome className="level-icon" />
+                  </div>
+                  <span>在家</span>
+                </button>
+                <button 
+                  className={`security-level-button ${securityLevel === 'away' ? 'active' : ''}`}
+                  onClick={() => handleSecurityLevelChange('away')}
+                >
+                  <div className={`level-icon-wrapper ${securityLevel === 'away' ? 'active' : ''}`}>
+                    <FaLock className="level-icon" />
+                  </div>
+                  <span>外出</span>
+                </button>
+                <button 
+                  className={`security-level-button ${securityLevel === 'night' ? 'active' : ''}`}
+                  onClick={() => handleSecurityLevelChange('night')}
+                >
+                  <div className={`level-icon-wrapper ${securityLevel === 'night' ? 'active' : ''}`}>
+                    <FaShieldAlt className="level-icon" />
+                  </div>
+                  <span>夜间</span>
+                </button>
+              </div>
+              
+              {/* 安全统计信息 - 改为图片中的卡片风格 */}
+              <div className="security-stats-container">
+                <div className="security-stat-card">
+                  <div className="stat-icon-container status-icon">
+                    <FaChartLine />
+                  </div>
+                  <div className="stat-content">
+                    <div className="stat-title">系统状态</div>
+                    <div className="stat-value">受保护</div>
+                    <div className="stat-progress-bar">
+                      <div className="stat-progress-fill" style={{width: '100%'}}></div>
+                    </div>
+                  </div>
+                </div>
+                
+                <div className="security-stat-card">
+                  <div className="stat-icon-container check-icon">
+                    <FaChartLine />
+                  </div>
+                  <div className="stat-content">
+                    <div className="stat-title">最后检查</div>
+                    <div className="stat-value">2分钟前</div>
+                    <div className="stat-description">所有系统正常</div>
+                    <div className="stat-progress-bar">
+                      <div className="stat-progress-fill" style={{width: '90%'}}></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              {/* 最近活动 */}
+              <div className="security-alerts modern-card">
+                <h3>最近活动</h3>
+                <div className="alerts-list">
+                  <div className="alert-item info">
+                    <div className="alert-icon"><FaInfoCircle /></div>
+                    <div className="alert-content">
+                      <div className="alert-message">前门已解锁</div>
+                      <div className="alert-time">今天, 10:23</div>
+                    </div>
+                  </div>
+                  <div className="alert-item info">
+                    <div className="alert-icon"><FaInfoCircle /></div>
+                    <div className="alert-content">
+                      <div className="alert-message">系统已设置为外出模式</div>
+                      <div className="alert-time">今天, 8:15</div>
+                    </div>
+                  </div>
+                  <div className="alert-item warning">
+                    <div className="alert-icon"><FaExclamationTriangle /></div>
+                    <div className="alert-content">
+                      <div className="alert-message">后院检测到移动</div>
+                      <div className="alert-time">昨天, 23:42</div>
+                    </div>
+                  </div>
+                  <div className="alert-item info">
+                    <div className="alert-icon"><FaInfoCircle /></div>
+                    <div className="alert-content">
+                      <div className="alert-message">后门已锁定</div>
+                      <div className="alert-time">昨天, 22:30</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              {/* 安全设置 */}
+              <div className="security-settings modern-card">
+                <h3>设置</h3>
+                <div className="settings-list">
+                  <div className="setting-item">
+                    <div className="setting-info">
+                      <div className="setting-name">移动检测</div>
+                      <div className="setting-description">当检测到移动时发出警报</div>
+                    </div>
+                    <div 
+                      className={`toggle-switch ${securityFeatures.motionDetection ? 'active' : ''}`}
+                      onClick={() => toggleSecurityFeature('motionDetection')}
+                    >
+                      <div className="toggle-button">
+                        <span></span><span></span><span></span><span></span>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="setting-item">
+                    <div className="setting-info">
+                      <div className="setting-name">远程访问</div>
+                      <div className="setting-description">允许远程系统访问</div>
+                    </div>
+                    <div 
+                      className={`toggle-switch ${securityFeatures.remoteAccess ? 'active' : ''}`}
+                      onClick={() => toggleSecurityFeature('remoteAccess')}
+                    >
+                      <div className="toggle-button">
+                        <span></span><span></span><span></span><span></span>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="setting-item">
+                    <div className="setting-info">
+                      <div className="setting-name">通知</div>
+                      <div className="setting-description">发送推送通知</div>
+                    </div>
+                    <div 
+                      className={`toggle-switch ${securityFeatures.notifications ? 'active' : ''}`}
+                      onClick={() => toggleSecurityFeature('notifications')}
+                    >
+                      <div className="toggle-button">
+                        <span></span><span></span><span></span><span></span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         );
@@ -503,7 +698,9 @@ const MainContent = ({ activeSection = 'home', theme = 'white' }) => {
                   </div>
                   <div className="theme-toggle">
                     <div className="toggle-switch active">
-                      <div className="toggle-button"></div>
+                      <div className="toggle-button">
+                        <span></span><span></span><span></span><span></span>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -598,7 +795,9 @@ const MainContent = ({ activeSection = 'home', theme = 'white' }) => {
             className={`power-toggle ${isPowerOn ? 'active' : ''}`}
             onClick={() => setIsPowerOn(!isPowerOn)}
           >
-            <div className="toggle-button"></div>
+            <div className="toggle-button">
+              <span></span><span></span><span></span><span></span>
+            </div>
           </div>
         </div>
       </div>
